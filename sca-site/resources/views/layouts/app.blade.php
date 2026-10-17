@@ -19,7 +19,8 @@
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+@vite(['resources/js/app.js'])
         <link rel="stylesheet" href="{{ asset('css/hb-app.css') }}">
     </head>
     <body class="hb-app font-sans antialiased">

@@ -70,7 +70,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     {{-- Tailwind reste chargé : les anciennes pages admin utilisent ses classes utilitaires (mise en page). --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+@vite(['resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('css/hb-admin.css') }}">
     <script src="{{ asset('js/hb-admin.js') }}" defer></script>
 </head>
