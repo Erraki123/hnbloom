@@ -1,0 +1,210 @@
+<?php
+
+/*
+ * NOS PROJETS — contenu des 18 projets (repris de hnbloom.com/projects).
+ * Pour ajouter / modifier un projet : éditer uniquement ce fichier.
+ * Les images pointent vers hnbloom.com ; téléchargez-les dans public/images/projects/
+ * puis remplacez les URL par 'images/projects/xxx.jpg' quand l'ancien site sera fermé.
+ */
+
+/*
+ * Si l'image existe dans public/images/projects/ -> chemin local.
+ * Sinon -> repli sur l'URL distante hnbloom.com (le site ne casse jamais).
+ * Après "php artisan projects:download-images" : php artisan config:clear
+ */
+$up = fn (string $f) => file_exists(public_path("images/projects/{$f}"))
+    ? "images/projects/{$f}"
+    : "https://hnbloom.com/wp-content/uploads/2024/09/{$f}";
+
+return [
+    'projects' => [
+        [
+            'slug'       => 'autoroute-du-maroc-peage-bouznika',
+            'title'      => 'Autoroute du Maroc Péage Bouznika',
+            'name'       => 'Autoroutes du Maroc',
+            'thumb'      => $up('autoroute-du-maroc.png'),
+            'paragraphs' => ['ADM assure l’assistance aux clients usagers d’abord à travers la multiplication de patrouilles et l’augmentation des fréquences des rondes. À l’heure actuelle des dizaines de véhicules de patrouille sillonnent les 1800 km du réseau par shift (3×8), et parcourent près de 23.000 kilomètres par jour. Les automobilistes peuvent en outre solliciter une assistance à n’importe quel moment en appelant le centre d’appel 5050, disponible 24h/24 et 7j/7.'],
+            'website'    => 'https://www.adm.co.ma/fr',
+            'image'      => $up('img72.jpg'),
+            'gallery'    => [$up('img76.jpg'), $up('img73.jpg')],
+        ],
+        [
+            'slug'       => 'evenementiel-siam-2019-2023',
+            'title'      => 'Evenementiel SIAM 2019 & 2023',
+            'name'       => 'SIAM',
+            'thumb'      => $up('siam.png'),
+            'paragraphs' => ['Cette sollicitude toute particulière pour le SIAM, vitrine et fer de lance des stratégies agricoles nationales, illustre l’attention Royale portée au secteur agricole. Ce dernier est le maillon économique essentiel du Royaume, l’acteur du développement rural, le garant de l’équilibre social du pays et un gage de sécurité pour l’avenir des générations futures.'],
+            'website'    => 'https://www.salon-agriculture.ma/en/',
+            'image'      => $up('img131.jpg'),
+            'gallery'    => [],
+        ],
+        [
+            'slug'       => 'ocp',
+            'title'      => 'OCP',
+            'name'       => 'OCP',
+            'thumb'      => $up('ocp.png'),
+            'paragraphs' => ['Fondée en 1920 pour exploiter le phosphate au Maroc, ces activités couvrent aujourd’hui l’ensemble du cycle de nutrition des plantes.'],
+            'website'    => 'https://www.ocpgroup.ma/',
+            'image'      => $up('img44.jpg'),
+            'gallery'    => [$up('img42.jpg'), $up('img43.jpg')],
+        ],
+        [
+            'slug'       => 'institut-royal-des-etudes-strategiques',
+            'title'      => 'Institut Royal Des Etudes Strategiques',
+            'name'       => 'IRES',
+            'thumb'      => $up('ires.png'),
+            'paragraphs' => ['L’IRES a pour vocation de contribuer à la prise de décisions sur les questions stratégiques. Sa mission est de réaliser des études et des analyses stratégiques sur les questions soumises par Sa Majesté le Roi et d’assurer une fonction de veille stratégique, tant au niveau national qu’international, dans divers domaines considérés comme stratégiques pour le pays.'],
+            'website'    => 'https://www.ires.ma/en',
+            'image'      => $up('img101.jpg'),
+            'gallery'    => [$up('img99.jpg'), $up('img100.jpg')],
+        ],
+        [
+            'slug'       => 'renault',
+            'title'      => 'RENAULT',
+            'name'       => 'Renault',
+            'thumb'      => $up('renaukt.png'),
+            'paragraphs' => ['Constructeur automobile depuis 1898, ils sont présents dans 134 pays et ont vendu près de 3,9 millions de véhicules en 2018. Pour répondre aux grands défis technologiques du futur et poursuivre leur stratégie de croissance rentable, ils s’appuient sur leur développement à l’international et misons sur la complémentarité de ces cinq marques : Renault, Dacia, Renault Samsung Motors, Alpine et LADA.'],
+            'website'    => 'https://www.renault.ma/',
+            'image'      => $up('img53.jpg'),
+            'gallery'    => [$up('img52-748x1024.jpg')],
+        ],
+        [
+            'slug'       => 'evenementiel-auto-expo-2018',
+            'title'      => 'Evenementiel Auto Expo 2018',
+            'name'       => 'Auto Expo 2018',
+            'thumb'      => $up('auto-expo.png'),
+            'paragraphs' => [],
+            'website'    => null,
+            'image'      => $up('img126.jpg'),
+            'gallery'    => [],
+        ],
+        [
+            'slug'       => 'salle-de-sport-plazza',
+            'title'      => 'Salle de Sport Plazza',
+            'name'       => 'Sport Plazza',
+            'thumb'      => $up('sport-plazza.png'),
+            'paragraphs' => ['Sport Plazza est le 1er club de remise en forme en Afrique fondé en 2006, avec un objectif de créer une infrastructure attrayante permettant d’atteindre tout objectif sportif.'],
+            'website'    => 'https://sportplazza.ma/',
+            'image'      => $up('img119.jpg'),
+            'gallery'    => [$up('img121.jpg'), $up('img122.jpg'), $up('img123.jpg')],
+        ],
+        [
+            'slug'       => 'salle-de-sport-passage-fitness',
+            'title'      => 'Salle de Sport Passage Fitness',
+            'name'       => 'Passage Fitness',
+            'thumb'      => $up('passage-fitness.png'),
+            'paragraphs' => ['Découvrez les plus beaux centres de fitness du Maroc avec Passage Fitness. Chacun de leur cinq centres est adapté aux athlètes de renommée mondiale et propose les équipements les plus récents, le meilleur coaching, les cours les plus interactifs et les meilleurs guides nutritionnels. Découvrez la meilleure version de vous-même avec Passage Fitness.'],
+            'website'    => 'https://passage.fitness/en/',
+            'image'      => $up('img113.jpg'),
+            'gallery'    => [$up('img114.jpg'), $up('img115.jpg'), $up('img116.jpg')],
+        ],
+        [
+            'slug'       => 'richbond',
+            'title'      => 'Richbond',
+            'name'       => 'Richbond',
+            'thumb'      => $up('richbond.png'),
+            'paragraphs' => ['Principale filiale du groupe, Richbond SA a vu le jour en 1965 et est spécialisée dans l’ameublement et la décoration. Elle compte aujourd’hui plus de 1800 salariés et permet la création de plus de 3600 emplois indirects.'],
+            'website'    => 'https://www.richbond.ma/',
+            'image'      => $up('img108.jpg'),
+            'gallery'    => [$up('img107.jpg')],
+        ],
+        [
+            'slug'       => 'lear-corporation',
+            'title'      => 'Lear Corporation',
+            'heading'    => 'Lear Corporation — Usine Tanger',
+            'name'       => 'Lear Corporation',
+            'thumb'      => $up('lear.png'),
+            'paragraphs' => ['Lear, leader mondial de la technologie automobile dans le domaine des sièges et des systèmes électroniques, améliore chaque conduite en offrant des expériences embarquées intelligentes aux clients du monde entier.'],
+            'website'    => 'https://www.lear.com/',
+            'image'      => $up('img93.jpg'),
+            'gallery'    => [$up('img92-1024x768.jpg')],
+        ],
+        [
+            'slug'       => 'netflix',
+            'title'      => 'Netflix',
+            'name'       => 'Netflix',
+            'thumb'      => $up('net.png'),
+            'paragraphs' => [
+                'Netflix est un service de streaming qui propose une grande variété d’émissions de télévision primées, de films, d’animes, de documentaires et bien plus encore sur des milliers d’appareils connectés à Internet.',
+                'Vous pouvez regarder autant de contenu que vous le souhaitez, quand vous le souhaitez, le tout pour un prix mensuel modique. Il y a toujours quelque chose de nouveau à découvrir et de nouvelles émissions de télévision et de nouveaux films sont ajoutés chaque semaine !',
+            ],
+            'website'    => 'https://www.netflix.com/',
+            'image'      => $up('nt-nt-1-1.png'),
+            'gallery'    => [$up('img89.jpg')],
+        ],
+        [
+            'slug'       => 'centre-dappel-majorel',
+            'title'      => 'Centre d’appel Majorel',
+            'heading'    => 'Centre d’Appel Majorel',
+            'name'       => 'Majorel',
+            'thumb'      => $up('majorel.png'),
+            'paragraphs' => [
+                'Ils conçoivent et mettent en œuvre des expériences client personnalisées pour les plus grandes marques au monde.',
+                'Guidés par le sens du service et l’esprit entrepreneurial, les groupes Bertelsmann et Saham ont noué un partenariat pour donner naissance à Majorel, acteur international majeur de la gestion de la relation client.',
+            ],
+            'website'    => 'https://fr.majorel.com/',
+            'image'      => $up('img86.jpg'),
+            'gallery'    => [$up('img83.jpg')],
+        ],
+        [
+            'slug'       => 'laprophan',
+            'title'      => 'Laprophan',
+            'name'       => 'Laprophan',
+            'thumb'      => $up('laprophan.png'),
+            'paragraphs' => ['Partenaire historique reconnu des professionnels de santé et des autorités sanitaires, Laprophan a naturellement vocation à proposer et promouvoir les meilleurs soins de santé tout en contribuant activement à l’innovation thérapeutique.'],
+            'website'    => 'https://laprophan.com/',
+            'image'      => $up('img80.jpg'),
+            'gallery'    => [$up('img79-1024x766.jpg')],
+        ],
+        [
+            'slug'       => 'cms-sogea-tour-awb-casa-finance-city',
+            'title'      => 'CMS-SOGEA Tour AWB CASA Finance City',
+            'name'       => 'Construction management services (CMS)',
+            'thumb'      => $up('cms.png'),
+            'paragraphs' => ['CMS était initialement spécialisée dans les métiers de maîtrise d’ouvrage déléguée et de management de projets immobiliers et hôteliers. Suite au changement de son actionnariat opéré en début 2016, CMS a revu son positionnement stratégique, et s’est lancée dans le développement d’une nouvelle activité dans la continuité de son métier de base à savoir la réalisation de projets clés en mains.'],
+            'website'    => 'https://www.cmscompany.net/',
+            'image'      => $up('Logo-CMS-HD-300x260-1.jpg'),
+            'gallery'    => [$up('img68.jpg'), $up('img69.jpg')],
+        ],
+        [
+            'slug'       => 'the-american-school-of-benguerir',
+            'title'      => 'The American School of Benguerir',
+            'name'       => 'The American School of Benguerir',
+            'thumb'      => $up('the-american-shcool.png'),
+            'paragraphs' => ['The American School of Benguerir offre un environnement d’apprentissage sûr et engageant. Leur objectif est de créer une communauté d’apprentissage dynamique et d’aider les étudiants à développer des traits de caractère importants ainsi que des compétences et des aptitudes clés pour le 21e siècle.'],
+            'website'    => 'https://asb.ac.ma/',
+            'image'      => $up('img62.jpg'),
+            'gallery'    => [$up('img57.jpg'), $up('img61.jpg')],
+        ],
+        [
+            'slug'       => 'timar',
+            'title'      => 'TIMAR',
+            'name'       => 'TIMAR',
+            'thumb'      => $up('timar.png'),
+            'paragraphs' => ['Spécialisé dans le transport international de marchandises au Maroc, la priorité de TIMAR est d’être à l’écoute de leur clients et de les satisfaire par une approche de service mais aussi par une parfaite maîtrise des rouages règlementaires. Ils veillent à chaque instant à être force de proposition et à anticiper toutes les étapes permettant à leur clients d’être gagnants sur le coût et les délais.'],
+            'website'    => 'https://www.timar.ma/en/',
+            'image'      => $up('img49.jpg'),
+            'gallery'    => [$up('img48-674x1024.jpg')],
+        ],
+        [
+            'slug'       => 'yazaki',
+            'title'      => 'Yazaki',
+            'name'       => 'YAZAKI',
+            'thumb'      => $up('yazaki.png'),
+            'paragraphs' => ['En tant qu’entreprise véritablement mondiale, profondément ancrée dans les traditions et les valeurs culturelles japonaises, Yazaki est un partenaire fiable pour ses clients ainsi qu’un promoteur de la durabilité environnementale dans le monde entier.'],
+            'website'    => 'https://www.yazaki-europe.com/index',
+            'image'      => $up('img38.jpg'),
+            'gallery'    => [$up('References-TRX-2024.jpg'), $up('References-TRX-2024-2.jpg')],
+        ],
+        [
+            'slug'       => 'stade-moulay-abdellah-rabat',
+            'title'      => 'Stade Moulay Abdellah Rabat',
+            'name'       => 'Stade Moulay Abdellah Rabat',
+            'thumb'      => $up('stad-moulay-abdellah.png'),
+            'paragraphs' => [],
+            'website'    => null,
+            'image'      => $up('img33.jpg'),
+            'gallery'    => [$up('img28.jpg'), $up('img27.jpg'), $up('img26.jpg')],
+        ],
+    ],
+];

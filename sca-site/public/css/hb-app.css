@@ -1,0 +1,122 @@
+/* =====================================================================
+   HN BLOOM — Layout principal (x-app-layout) : thème sombre/doré
+   Habille les classes Tailwind de Breeze (navigation, formulaires, boutons).
+   Tout est limité à .hb-app : rien d'autre n'est modifié.
+   ===================================================================== */
+:root, html[data-ad-theme="dark"] {
+    --font: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --serif: 'Playfair Display', Georgia, serif;
+    --gold: #d8b45e; --gold-l: #f0d69a; --gold-d: #a8832f;
+    --bg: #070706; --panel: #11110e; --panel-2: #171610; --input: #0a0a08;
+    --text: #f6f1e7; --muted: #a7a398; --faint: #6f6b61;
+    --line: rgba(216,180,94,.2); --line-2: rgba(255,255,255,.07);
+    --shadow: 0 24px 60px rgba(0,0,0,.45);
+    --ok: #4cae7a; --warn: #e0a93b; --info: #4f8fdc; --bad: #d9605b;
+    color-scheme: dark;
+}
+html[data-ad-theme="light"] {
+    --bg: #f3f0e8; --panel: #ffffff; --panel-2: #faf8f2; --input: #ffffff;
+    --text: #1c1a15; --muted: #6a665b; --faint: #98948a;
+    --line: rgba(150,115,45,.28); --line-2: rgba(0,0,0,.07);
+    --shadow: 0 18px 40px rgba(60,45,10,.10);
+    color-scheme: light;
+}
+
+.hb-app { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); font-size: 14px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+.hb-app .hb-shell, .hb-app .bg-gray-100 { background: var(--bg); }
+.hb-app a { color: inherit; }
+
+/* En-tête de page */
+.hb-header { background: var(--panel); border-bottom: 1px solid var(--line); box-shadow: none; }
+.hb-header h1, .hb-header h2 { margin: 0; color: var(--text); font-family: var(--serif); font-weight: 400; font-size: 26px; line-height: 1.2; }
+
+/* Surfaces */
+.hb-app .bg-white { background: var(--panel); color: var(--text); }
+.hb-app .bg-gray-50, .hb-app .bg-gray-100.hb-x { background: var(--panel-2); }
+.hb-app .shadow, .hb-app .shadow-sm, .hb-app .shadow-md, .hb-app .shadow-lg, .hb-app .shadow-xl { box-shadow: none; border: 1px solid var(--line); }
+.hb-app .sm\:rounded-lg, .hb-app .rounded-lg, .hb-app .rounded-md, .hb-app .rounded { border-radius: 0; }
+.hb-app .ring-1, .hb-app .ring-black { --tw-ring-color: var(--line); }
+.hb-app .border-gray-100, .hb-app .border-gray-200, .hb-app .border-gray-300 { border-color: var(--line); }
+.hb-app .divide-gray-200 > :not([hidden]) ~ :not([hidden]), .hb-app .divide-gray-100 > :not([hidden]) ~ :not([hidden]) { border-color: var(--line-2); }
+
+/* Textes */
+.hb-app .text-gray-900, .hb-app .text-gray-800, .hb-app .text-gray-700 { color: var(--text); }
+.hb-app .text-gray-600, .hb-app .text-gray-500, .hb-app .text-gray-400 { color: var(--muted); }
+.hb-app .hover\:text-gray-700:hover, .hb-app .hover\:text-gray-800:hover, .hb-app .hover\:text-gray-900:hover, .hb-app .hover\:text-gray-500:hover { color: var(--gold-l); }
+.hb-app .text-green-600 { color: #7fd3a4; } .hb-app .text-red-600 { color: #ef8a86; }
+.hb-app h1, .hb-app h2, .hb-app h3 { color: var(--text); }
+.hb-app .text-indigo-600, .hb-app .text-indigo-500, .hb-app .text-blue-600 { color: var(--gold); }
+.hb-app .underline { text-underline-offset: 3px; }
+
+/* Navigation (layouts.navigation) */
+.hb-app nav.bg-white, .hb-app nav { background: color-mix(in srgb, var(--bg) 92%, transparent); border-color: var(--line); }
+.hb-app nav a, .hb-app nav button { transition: color .2s, border-color .2s, background .2s; }
+.hb-app nav .border-indigo-400, .hb-app nav .border-indigo-500 { border-color: var(--gold); }
+.hb-app nav .border-transparent.hover\:border-gray-300:hover { border-color: var(--line); }
+.hb-app nav .hover\:bg-gray-100:hover, .hb-app nav .focus\:bg-gray-100:focus, .hb-app .hover\:bg-gray-100:hover, .hb-app .focus\:bg-gray-100:focus { background: rgba(216,180,94,.09); color: var(--gold-l); }
+.hb-app nav .bg-indigo-50 { background: rgba(216,180,94,.1); }
+.hb-app nav .text-indigo-700 { color: var(--gold-l); }
+.hb-app nav .border-indigo-400.text-indigo-700, .hb-app nav .border-l-4 { border-color: var(--gold); }
+.hb-app nav svg.fill-current { color: var(--gold); }
+.hb-app nav .-me-2 button:hover, .hb-app nav .-me-2 button:focus { background: rgba(216,180,94,.09); }
+.hb-app nav .border-t { border-color: var(--line); }
+
+/* Menu déroulant */
+.hb-app .absolute.z-50 > .rounded-md, .hb-app .absolute.z-50 > div { background: var(--panel); border: 1px solid var(--line); box-shadow: var(--shadow); }
+.hb-app .absolute.z-50 a, .hb-app .absolute.z-50 button { color: var(--text); }
+
+/* Boutons Breeze */
+.hb-app .bg-gray-800, .hb-app button.bg-gray-800, .hb-app a.bg-gray-800 {
+    background: linear-gradient(110deg, #c7983e, #f0d58e); color: #15130d; border: 0; border-radius: 0;
+    font-weight: 600; letter-spacing: .08em; box-shadow: 0 4px 0 #8a6a25; transition: filter .2s, transform .15s, box-shadow .15s;
+}
+.hb-app .bg-gray-800:hover, .hb-app .hover\:bg-gray-700:hover { background: linear-gradient(110deg, #c7983e, #f0d58e); color: #15130d; filter: brightness(1.06); }
+.hb-app .bg-gray-800:active, .hb-app .active\:bg-gray-900:active { transform: translateY(3px); box-shadow: 0 1px 0 #8a6a25; background: linear-gradient(110deg, #c7983e, #f0d58e); }
+.hb-app .text-white { color: #fff; }
+.hb-app .bg-gray-800.text-white { color: #15130d; }
+.hb-app button.bg-white.border, .hb-app .bg-white.border-gray-300 { background: transparent; border: 1px solid var(--line); color: var(--text); }
+.hb-app button.bg-white.border:hover { border-color: var(--gold); color: var(--gold-l); }
+.hb-app .bg-red-600, .hb-app .bg-red-500 { background: var(--bad); color: #fff; border-radius: 0; }
+.hb-app .hover\:bg-red-500:hover { filter: brightness(1.1); background: var(--bad); }
+
+/* Champs de formulaire */
+.hb-app input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=hidden]):not([type=submit]):not([type=button]),
+.hb-app select, .hb-app textarea {
+    background: var(--input); color: var(--text); border: 1px solid var(--line); border-radius: 0;
+    transition: border-color .2s, box-shadow .2s;
+}
+.hb-app input::placeholder, .hb-app textarea::placeholder { color: var(--faint); }
+.hb-app input:focus, .hb-app select:focus, .hb-app textarea:focus {
+    outline: none; border-color: var(--gold); --tw-ring-color: rgba(216,180,94,.18); box-shadow: 0 0 0 3px rgba(216,180,94,.15);
+}
+.hb-app input[type=checkbox], .hb-app input[type=radio] { accent-color: var(--gold); color: var(--gold); background: var(--input); border-color: var(--line); }
+.hb-app input[type=file] { color: var(--muted); }
+.hb-app input[type=file]::file-selector-button { margin-right: 12px; padding: 8px 14px; border: 1px solid var(--line); background: transparent; color: var(--gold-l); cursor: pointer; }
+.hb-app label { color: var(--text); }
+.hb-app option { background: var(--panel); color: var(--text); }
+.hb-app .focus\:ring-indigo-500:focus, .hb-app .focus\:border-indigo-500:focus { --tw-ring-color: rgba(216,180,94,.25); border-color: var(--gold); }
+.hb-app input:-webkit-autofill { -webkit-text-fill-color: var(--text); -webkit-box-shadow: 0 0 0 1000px var(--input) inset; }
+
+/* Tableaux */
+.hb-app table { border-collapse: collapse; }
+.hb-app th { color: var(--faint); font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+.hb-app td, .hb-app th { border-color: var(--line-2); }
+.hb-app thead, .hb-app .bg-gray-50 { background: var(--panel-2); }
+
+/* Pagination Laravel */
+.hb-app nav[role=navigation] a, .hb-app nav[role=navigation] span { color: var(--text); }
+.hb-app nav[role=navigation] svg { width: 18px; height: 18px; }
+
+/* Messages */
+.hb-flash { padding: 13px 16px; border: 1px solid var(--line); background: var(--panel); font-size: 13.5px; }
+.hb-flash-ok { color: #7fd3a4; border-color: rgba(76,174,122,.4); background: rgba(76,174,122,.1); }
+.hb-flash-bad { color: #ef8a86; border-color: rgba(217,96,91,.45); background: rgba(217,96,91,.1); }
+.hb-app .bg-green-100 { background: rgba(76,174,122,.12); color: #7fd3a4; border: 1px solid rgba(76,174,122,.35); }
+.hb-app .bg-red-100 { background: rgba(217,96,91,.12); color: #ef8a86; border: 1px solid rgba(217,96,91,.35); }
+.hb-app .text-green-800 { color: #7fd3a4; } .hb-app .text-red-800 { color: #ef8a86; }
+.hb-app .bg-yellow-50, .hb-app .bg-blue-50 { background: rgba(216,180,94,.09); color: var(--text); }
+
+.hb-app img { border-radius: 0; }
+.hb-app hr { border-color: var(--line-2); }
+.hb-app ::selection { background: rgba(216,180,94,.35); }
+@media (prefers-reduced-motion: reduce) { .hb-app * { transition: none !important; animation: none !important; } }

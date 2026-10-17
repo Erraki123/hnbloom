@@ -1,0 +1,9 @@
+Mettez ici vos photos avec EXACTEMENT les noms de content.js / Site.css :
+
+  hero-night.jpg   -> fond du hero (utilise par Site.css)
+  hero.jpg         -> IMAGES.hero
+  about.jpg        -> IMAGES.about
+  obstacles.jpg, hygiene.jpg, securite.jpg, incendie.jpg, domotique.jpg  -> SOLUTION_IMAGES
+  projet1.jpg, projet2.jpg, projet3.jpg  -> projets (optionnel)
+
+Video du hero (optionnelle) : public/videos/hero.mp4
