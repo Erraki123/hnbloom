@@ -25,7 +25,8 @@
 </head>
 <body>
 
-<div class="hb-page" x-data="hbLayout()" data-theme="mixte" :data-theme="theme">
+{{-- Thème fixe "mixte" : le choix du fond a été supprimé --}}
+<div class="hb-page" x-data="hbLayout()" data-theme="mixte">
 
     {{-- SIDEBAR (ordinateur) --}}
     <aside class="hb-sidebar">
@@ -36,7 +37,10 @@
         <div class="hb-sidebar-nav">@include('partials.hb-nav')</div>
         <div class="hb-sidebar-bottom">
             <a href="{{ route('contact', ['sujet' => 'quote']) }}" class="hb-button hb-button-gold hb-side-quote">Demander un devis</a>
-   
+            <div class="hb-side-contact">
+                @if(!empty($c['contact']['phones'][0]))<p>{{ $c['contact']['phones'][0] }}</p>@endif
+                @if(!empty($c['contact']['email']))<p>{{ $c['contact']['email'] }}</p>@endif
+            </div>
             <div class="hb-sidebar-note">SMART BUILDING · CASABLANCA</div>
         </div>
     </aside>
@@ -45,7 +49,6 @@
     <header class="hb-mobile-header">
         <a href="{{ route('home') }}" class="hb-mobile-brand">{{ $c['name'] }}</a>
         <div class="hb-mobile-controls">
-            @include('partials.hb-themes')
             <button type="button" aria-label="Menu" class="hb-icon-button" @click="open = !open">
                 <span x-show="!open"><x-icon name="menu" :size="22" /></span>
                 <span x-show="open" x-cloak><x-icon name="x" :size="22" /></span>
@@ -87,24 +90,11 @@
 <script>
 function hbLayout() {
     return {
-        theme: 'mixte',
         open: false,
-        themes: [
-            { id: 'mixte', label: 'Mixte',  swatch: 'linear-gradient(135deg,#ffffff 50%,#080808 50%)' },
-            { id: 'white', label: 'Blanc',  swatch: '#fcfbf8' },
-            { id: 'ivory', label: 'Ivoire', swatch: '#f1eadb' },
-            { id: 'dark',  label: 'Sombre', swatch: '#161616' },
-        ],
         init() {
-            try {
-                const saved = localStorage.getItem('hn-theme-v2');
-                if (this.themes.some(t => t.id === saved)) this.theme = saved;
-            } catch (e) {}
-            document.documentElement.dataset.theme = this.theme;
-            this.$watch('theme', v => {
-                document.documentElement.dataset.theme = v;
-                try { localStorage.setItem('hn-theme-v2', v) } catch (e) {}
-            });
+            // Thème fixe : on efface l'ancien choix mémorisé dans le navigateur
+            try { localStorage.removeItem('hn-theme-v2'); } catch (e) {}
+            document.documentElement.dataset.theme = 'mixte';
         },
         go(id) {
             this.open = false;
