@@ -15,6 +15,9 @@
 /auth.json
 /node_modules
 
+
+/storage/*.key
+/storage/pail
 /vendor
 _ide_helper.php
 Homestead.json
