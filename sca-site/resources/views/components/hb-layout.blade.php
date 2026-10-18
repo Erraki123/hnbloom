@@ -19,6 +19,15 @@
         @media (prefers-reduced-motion: reduce) {
             html.hb-js .reveal:not(.is-in) { opacity: 1; transform: none; }
         }
+
+        /* Menu mobile : ouverture par JavaScript simple (indépendant d'Alpine) */
+        .hb-page .hb-mobile-menu { display: none !important; }
+        @media (max-width: 760px) {
+            .hb-page .hb-mobile-menu.is-open { display: block !important; max-height: calc(100svh - 58px); overflow-y: auto; }
+        }
+        .hb-page .hb-menu-btn .ico-close { display: none; }
+        .hb-page .hb-menu-btn.is-open .ico-menu { display: none; }
+        .hb-page .hb-menu-btn.is-open .ico-close { display: block; }
     </style>
     @vite(['resources/js/app.js'])
     @stack('head')
@@ -49,13 +58,13 @@
     <header class="hb-mobile-header">
         <a href="{{ route('home') }}" class="hb-mobile-brand">{{ $c['name'] }}</a>
         <div class="hb-mobile-controls">
-            <button type="button" aria-label="Menu" class="hb-icon-button" @click="open = !open">
-                <span x-show="!open"><x-icon name="menu" :size="22" /></span>
-                <span x-show="open" x-cloak><x-icon name="x" :size="22" /></span>
+            <button type="button" id="hbMenuBtn" class="hb-icon-button hb-menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="hbMobileMenu">
+                <span class="ico-menu"><x-icon name="menu" :size="22" /></span>
+                <span class="ico-close"><x-icon name="x" :size="22" /></span>
             </button>
         </div>
     </header>
-    <div class="hb-mobile-menu" x-show="open" x-cloak>
+    <div class="hb-mobile-menu" id="hbMobileMenu">
         @include('partials.hb-nav')
         <a href="{{ route('contact', ['sujet' => 'quote']) }}" class="hb-button hb-button-gold hb-mobile-quote">Demander un devis</a>
     </div>
@@ -65,6 +74,38 @@
         @include('partials.hb-footer')
     </main>
 </div>
+
+{{-- Menu mobile : fonctionne même si Alpine n'est pas chargé --}}
+<script>
+(function () {
+    var btn  = document.getElementById('hbMenuBtn');
+    var menu = document.getElementById('hbMobileMenu');
+    if (!btn || !menu) return;
+
+    function setOpen(state) {
+        menu.classList.toggle('is-open', state);
+        btn.classList.toggle('is-open', state);
+        btn.setAttribute('aria-expanded', state ? 'true' : 'false');
+    }
+
+    btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        setOpen(!menu.classList.contains('is-open'));
+    });
+
+    // Fermer en cliquant sur un lien du menu
+    menu.addEventListener('click', function (e) {
+        if (e.target.closest('a')) setOpen(false);
+    });
+
+    // Fermer en cliquant ailleurs, avec Échap, ou en repassant sur grand écran
+    document.addEventListener('click', function (e) {
+        if (!menu.contains(e.target) && !btn.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 760) setOpen(false); });
+})();
+</script>
 
 {{-- Apparition au scroll : indépendant d'Alpine, avec filet de sécurité --}}
 <script>
