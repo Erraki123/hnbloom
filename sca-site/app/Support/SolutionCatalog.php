@@ -14,11 +14,16 @@ class SolutionCatalog
         'detection-incendie'              => 'detection-incendi',
     ];
 
-    private static function read(string $file): array
-    {
-        $path = storage_path('app/' . $file);
-        return is_file($path) ? (json_decode(file_get_contents($path), true) ?: []) : [];
+private static function read(string $file): array
+{
+    foreach ([database_path('data/' . $file), storage_path('app/' . $file)] as $path) {
+        if (is_file($path)) {
+            return json_decode(file_get_contents($path), true) ?: [];
+        }
     }
+
+    return [];
+}
 
     public static function solutions(): array
     {
