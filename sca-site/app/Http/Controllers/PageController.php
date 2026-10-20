@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Support\SolutionCatalog;
+
 class PageController extends Controller
 {
     public function about()
@@ -14,12 +16,39 @@ class PageController extends Controller
         return view('pages.solutions');
     }
 
-    public function solution(string $slug)
+    public function solution($slug)
     {
-        $family = config("hnbloom.families.$slug");
-        abort_unless($family, 404);
+        $f = SolutionCatalog::solution($slug);
+        abort_if(! $f, 404);
 
-        return view('pages.solution', ['slug' => $slug, 'f' => $family]);
+        $f['lead'] = $f['lead'] ?: 'Découvrez notre gamme de produits et solutions.';
+
+        return view('solution', compact('f'));
+    }
+
+    public function solutionCategory($solution, $category)
+    {
+        $f = SolutionCatalog::solution($solution);
+        abort_if(! $f, 404);
+
+        $cat = SolutionCatalog::category($f['categories'], $category);
+        abort_if(! $cat, 404);
+
+        $products = SolutionCatalog::products($cat['products'] ?? []);
+
+        return view('solution-category', compact('f', 'cat', 'products'));
+    }
+
+    public function product($slug)
+    {
+        $p = SolutionCatalog::product($slug);
+        abort_if(! $p, 404);
+
+        $f = SolutionCatalog::solution($p['solution']);
+        $cat = $f ? SolutionCatalog::category($f['categories'], $p['category']) : null;
+        $related = SolutionCatalog::related($p);
+
+        return view('solution-product', compact('p', 'f', 'cat', 'related'));
     }
 
     public function domotique()

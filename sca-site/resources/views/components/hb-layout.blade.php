@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{ asset('css/Site.css') }}">
     <link rel="stylesheet" href="{{ asset('css/hnbloom-laravel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/hb-pages.css') }}">
+    {{-- Catalogue (solutions / catégories / produits) : en dernier pour primer sur les styles précédents --}}
+    <link rel="stylesheet" href="{{ asset('css/hb-catalog.css') }}?v={{ filemtime(public_path('css/hb-catalog.css')) }}">
     <style>
         /* Par défaut tout est VISIBLE. On ne cache que si le JavaScript fonctionne (classe hb-js). */
         .reveal { opacity: 1; transform: none; }
@@ -18,6 +20,14 @@
         html.hb-js .reveal { transition: opacity .7s cubic-bezier(.2,.7,.2,1) var(--d, 0s), transform .7s cubic-bezier(.2,.7,.2,1) var(--d, 0s); }
         @media (prefers-reduced-motion: reduce) {
             html.hb-js .reveal:not(.is-in) { opacity: 1; transform: none; }
+        }
+
+        /* Cartes du catalogue : on garde les transitions de survol malgré .reveal */
+        html.hb-js .hb-card.reveal,
+        html.hb-js .hb-cat.reveal {
+            transition: opacity .7s cubic-bezier(.2,.7,.2,1) var(--d, 0s),
+                        transform .35s cubic-bezier(.2,.7,.2,1),
+                        border-color .35s, box-shadow .35s;
         }
 
         /* Menu mobile : ouverture par JavaScript simple (indépendant d'Alpine) */
@@ -145,5 +155,8 @@ function hbLayout() {
     };
 }
 </script>
+
+{{-- Catalogue : galerie produit (miniatures + zoom) --}}
+<script src="{{ asset('js/hb-catalog.js') }}?v={{ filemtime(public_path('js/hb-catalog.js')) }}" defer></script>
 </body>
 </html>

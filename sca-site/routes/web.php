@@ -45,6 +45,9 @@ Route::get('/pending', function () {
 Route::get('/contact', [ContactController::class, 'create'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->middleware('throttle:5,1')->name('contact.store');
 
+Route::get('/solutions/{solution}/{category}', [PageController::class, 'solutionCategory'])->name('solutions.category');
+Route::get('/produit/{slug}', [PageController::class, 'product'])->name('solutions.product');
+
 // Espace ADMIN
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard');

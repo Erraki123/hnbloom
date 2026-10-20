@@ -338,3 +338,69 @@
     }
 }
 
+/* ================= CATALOGUE HN BLOOM ================= */
+:root{
+  --hb-cat-surface:#fff;
+  --hb-cat-soft:#f4f5f7;
+  --hb-cat-line:rgba(0,0,0,.08);
+  --hb-cat-accent:var(--hb-gold,#b8923a);
+}
+
+/* --- Grille --- */
+.hb-product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:24px;margin-top:28px}
+
+/* --- Carte produit / catégorie --- */
+.hb-product-card{display:flex;flex-direction:column;background:var(--hb-cat-surface);border:1px solid var(--hb-cat-line);border-radius:16px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .25s,box-shadow .25s,border-color .25s}
+.hb-product-card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,0,0,.12);border-color:rgba(0,0,0,.16)}
+.hb-product-thumb{aspect-ratio:4/3;background:var(--hb-cat-soft);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hb-product-thumb img{width:100%;height:100%;object-fit:contain;padding:14px;transition:transform .35s}
+.hb-product-thumb.is-cover img{object-fit:cover;padding:0}
+.hb-product-card:hover .hb-product-thumb img{transform:scale(1.05)}
+.hb-product-noimg{font-weight:700;letter-spacing:.12em;opacity:.25}
+.hb-product-body{display:flex;flex-direction:column;gap:6px;padding:18px 20px 20px;flex:1}
+.hb-product-body h3{margin:0;font-size:1.05rem;line-height:1.3}
+.hb-product-body p{margin:0;font-size:.9rem;opacity:.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hb-product-body .hb-link{margin-top:auto;padding-top:12px;font-weight:600;font-size:.9rem;display:inline-flex;align-items:center;gap:6px;color:var(--hb-cat-accent)}
+
+/* --- Fil d'Ariane --- */
+.hb-crumb-line{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:.85rem;margin:0 0 28px;opacity:.8}
+.hb-crumb-line a{text-decoration:none;color:inherit}
+.hb-crumb-line a:hover{text-decoration:underline}
+.hb-crumb-line .sep{opacity:.4}
+
+/* --- Page produit --- */
+.hb-product{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:56px;align-items:start}
+.hb-product-gallery{position:sticky;top:110px}
+.hb-product-main{background:var(--hb-cat-soft);border-radius:20px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hb-product-main img{width:100%;height:100%;object-fit:contain;padding:28px}
+.hb-thumbs{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.hb-thumbs button{width:76px;height:76px;border:2px solid transparent;border-radius:12px;background:var(--hb-cat-soft);padding:4px;cursor:pointer;transition:border-color .2s}
+.hb-thumbs button.is-active,.hb-thumbs button:hover{border-color:var(--hb-cat-accent)}
+.hb-thumbs img{width:100%;height:100%;object-fit:contain}
+
+.hb-product-info h1{font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.1;margin:6px 0 10px}
+.hb-product-sub{font-size:1.1rem;opacity:.75;margin:0 0 24px}
+.hb-product-info h3{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;opacity:.6;margin:0 0 10px}
+
+.hb-specs{list-style:none;margin:0 0 28px;padding:0;border:1px solid var(--hb-cat-line);border-radius:14px;overflow:hidden}
+.hb-specs li{display:flex;gap:12px;align-items:flex-start;padding:12px 16px;border-bottom:1px solid var(--hb-cat-line);line-height:1.5}
+.hb-specs li:last-child{border-bottom:0}
+.hb-specs li:nth-child(even){background:var(--hb-cat-soft)}
+.hb-specs svg{flex:none;margin-top:4px;color:var(--hb-cat-accent)}
+.hb-product-text p{line-height:1.7;opacity:.85}
+
+.hb-product-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+
+/* --- Bloc "à propos" (description + image) --- */
+.hb-split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:48px;align-items:center}
+.hb-split-text p{line-height:1.75;opacity:.85}
+.hb-split-media{background:var(--hb-cat-soft);border-radius:20px;padding:20px;display:flex;align-items:center;justify-content:center}
+.hb-split-media img{max-width:100%;max-height:420px;object-fit:contain;border-radius:12px}
+
+/* --- Responsive --- */
+@media (max-width:900px){
+  .hb-product,.hb-split{grid-template-columns:1fr;gap:28px}
+  .hb-product-gallery{position:static}
+  .hb-product-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+  .hb-product-body{padding:14px}
+}
