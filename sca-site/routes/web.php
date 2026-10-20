@@ -84,6 +84,15 @@ Route::middleware(['auth', 'approved'])->prefix('client')->name('client.')->grou
     Route::get('/mes-commandes/{order}', [ClientOrderController::class, 'show'])->name('orders.show');
 });
 
+Route::get('/_debug-catalog', function () {
+    return [
+        'data_path'      => database_path('data/solutions.json'),
+        'data_exists'    => is_file(database_path('data/solutions.json')),
+        'storage_exists' => is_file(storage_path('app/solutions.json')),
+        'json_error'     => json_last_error_msg(),
+        'slugs'          => array_column(\App\Support\SolutionCatalog::solutions(), 'slug'),
+    ];
+});
 // Pages publiques (en dehors de tout groupe auth) :
 Route::get('/qui-sommes-nous', [PageController::class, 'about'])->name('about');
 Route::get('/solutions', [PageController::class, 'solutions'])->name('solutions.index');
