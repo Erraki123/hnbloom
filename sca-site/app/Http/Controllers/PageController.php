@@ -6,6 +6,21 @@ use App\Support\SolutionCatalog;
 
 class PageController extends Controller
 {
+    /**
+     * يفرض صورة وفيديو العائلة من config/hnbloom.php
+     * (لأن SolutionCatalog يعطي صورة منتج ولا يمرر الفيديو).
+     */
+    private function withFamilyMedia(array $f, string $slug): array
+    {
+        $fam = config('hnbloom.families.' . $slug, []);
+
+        $f['image']    = $fam['image']    ?? ($f['image'] ?? null);
+        $f['video']    = $fam['video']    ?? null;
+        $f['fallback'] = $fam['fallback'] ?? null;
+
+        return $f;
+    }
+
     public function about()
     {
         return view('pages.about');
@@ -22,8 +37,9 @@ class PageController extends Controller
         abort_if(! $f, 404);
 
         $f['lead'] = $f['lead'] ?: 'Découvrez notre gamme de produits et solutions.';
+        $f = $this->withFamilyMedia($f, $slug);
 
-        return view('solution', compact('f'));
+        return view('solution', compact('f', 'slug'));
     }
 
     public function solutionCategory($solution, $category)
@@ -31,12 +47,14 @@ class PageController extends Controller
         $f = SolutionCatalog::solution($solution);
         abort_if(! $f, 404);
 
+        $f = $this->withFamilyMedia($f, $solution);
+
         $cat = SolutionCatalog::category($f['categories'], $category);
         abort_if(! $cat, 404);
 
         $products = SolutionCatalog::products($cat['products'] ?? []);
 
-        return view('solution-category', compact('f', 'cat', 'products'));
+        return view('solution-category', compact('f', 'cat', 'products', 'solution', 'category'));
     }
 
     public function product($slug)

@@ -93,7 +93,14 @@
                     @endphp
                     <a href="{{ $url }}" class="hb-dm-card reveal" style="--d:{{ $i * 0.08 }}s">
                         <div class="hb-dm-card-image">
-                            <img src="{{ $img }}" alt="{{ $m['title'] }} — HN BLOOM" loading="{{ $i === 0 ? 'eager' : 'lazy' }}" decoding="async">
+                        @php
+    $mv = !empty($m['video']) && file_exists(public_path($m['video'])) ? asset($m['video']) : null;
+@endphp
+@if($mv)
+    <video src="{{ $mv }}" poster="{{ $img }}" autoplay muted loop playsinline preload="metadata" disablepictureinpicture></video>
+@else
+    <img src="{{ $img }}" alt="{{ $m['title'] }} — HN BLOOM" loading="{{ $i === 0 ? 'eager' : 'lazy' }}" decoding="async">
+@endif
                             <span class="hb-dm-index">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
                             <span class="hb-dm-count">{{ count($m['items']) }} produits</span>
                             <span class="hb-dm-image-arrow"><x-icon name="arrow-up-right" :size="20" /></span>
@@ -192,6 +199,8 @@
     .hb-dm-card:hover { transform:translateY(-5px); border-color:rgba(241,213,142,.8); background:#13130f; }
     .hb-dm-card-image { position:relative; height:clamp(200px,20vw,270px); overflow:hidden; background:#1a1915; }
     .hb-dm-card-image img { display:block; width:100%; height:100%; object-fit:cover; transition:transform .7s,filter .4s; }
+.hb-dm-card-image video { display:block; width:100%; height:100%; object-fit:cover; transition:transform .7s,filter .4s; }
+.hb-dm-card:hover .hb-dm-card-image video { transform:scale(1.045); filter:brightness(1.05); }
     .hb-dm-card:hover .hb-dm-card-image img { transform:scale(1.045); filter:brightness(1.05); }
     .hb-dm-index { position:absolute; top:17px; left:17px; display:grid; width:37px; height:37px; place-items:center; border:1px solid rgba(241,213,142,.65); background:rgba(9,9,8,.82); color:var(--gl); font-size:11px; backdrop-filter:blur(8px); }
     .hb-dm-image-arrow { position:absolute; right:17px; bottom:17px; display:grid; width:42px; height:42px; place-items:center; border:1px solid rgba(241,213,142,.75); background:rgba(9,9,8,.75); color:var(--gl); transition:background .25s,color .25s; }

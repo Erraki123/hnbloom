@@ -114,7 +114,7 @@
                 "slug": "tourniquets",
                 "title": "Tourniquets Tripodes TRX",
                 "url": "https://hnbloom.com/categorie-produit/tourniquets/",
-                "image": "images/solutions/obstacles-physiques-automatise/trx-3.jpg",
+                "image": "images/products_nobg/tr2/trx3.png",
                 "lead": "",
                 "products": [
                     "hn1",
@@ -130,7 +130,7 @@
                 "slug": "couloirs-rapides",
                 "title": "Couloirs rapides TRX",
                 "url": "https://hnbloom.com/categorie-produit/couloirs-rapides/",
-                "image": "images/solutions/obstacles-physiques-automatise/Couloirs-rapides.jpg",
+                "image": "images/products_nobg/cr1/cr-hn-1.png",
                 "lead": "",
                 "products": [
                     "cr1",
@@ -144,7 +144,7 @@
                 "slug": "portillons-pmr",
                 "title": "Portillons PMR TRX",
                 "url": "https://hnbloom.com/categorie-produit/portillons-pmr/",
-                "image": "images/solutions/obstacles-physiques-automatise/trx-1.jpg",
+                "image": "images/products_nobg/pr2/trx2-1.png",
                 "lead": "",
                 "products": [
                     "pr1",
@@ -159,7 +159,7 @@
                 "slug": "barrieres-automatiques",
                 "title": "Barrières automatiques TRX",
                 "url": "https://hnbloom.com/categorie-produit/barrieres-automatiques/",
-                "image": "images/solutions/obstacles-physiques-automatise/BR1-OB2.jpg",
+                "image": "images/products_nobg/br1/BR1-OB2-1.png",
                 "lead": "",
                 "products": [
                     "br1"
@@ -170,7 +170,7 @@
                 "slug": "tourniquets-pleine-hauteur",
                 "title": "Tourniquets Pleine hauteur TRX",
                 "url": "https://hnbloom.com/categorie-produit/tourniquets-pleine-hauteur/",
-                "image": "images/solutions/obstacles-physiques-automatise/hn-tourinquant.png",
+                "image": "images/products_nobg/trh1/hn1.png",
                 "lead": "",
                 "products": [
                     "prh1-2",

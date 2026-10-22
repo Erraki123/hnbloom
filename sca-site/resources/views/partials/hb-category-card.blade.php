@@ -7,10 +7,20 @@
         ));
     }
     $img = $c['image'] ?? null;
+
+    // يستعمل النسخة الشفافة images/solutions_nobg/*.png إن وُجدت، وإلا الصورة الأصلية
+    if ($img) {
+        $alt = preg_replace('#^images/solutions/#', 'images/solutions_nobg/', $img);
+        $alt = preg_replace('#\.(jpe?g|png|webp)$#i', '.png', $alt);
+        if ($alt !== $img && file_exists(public_path($alt))) {
+            $img = $alt;
+        }
+    }
+    $isNobg = $img && str_contains($img, '_nobg/');
 @endphp
 
 <a class="hb-cat reveal" href="{{ route('solutions.category', [$f['slug'], $c['slug']]) }}">
-    <div class="hb-cat-media">
+    <div class="hb-cat-media {{ $isNobg ? 'is-nobg' : '' }}">
         @if($img)
             <img src="{{ asset($img) }}" alt="{{ $c['title'] }}" loading="lazy" decoding="async">
         @else

@@ -4,6 +4,15 @@
 
 @php
     $gallery = array_values(array_filter($p['gallery'] ?? [] ?: [$p['image'] ?? null]));
+
+    // يستعمل النسخة الشفافة (products_nobg/*.png) إن وُجدت، وإلا الصورة الأصلية
+    $nobg = function ($g) {
+        $n = preg_replace('#^images/products/#', 'images/products_nobg/', $g);
+        $n = preg_replace('#\.(jpe?g|png|webp)$#i', '.png', $n);
+        return ($n !== $g && file_exists(public_path($n))) ? $n : $g;
+    };
+    $gallery = array_map($nobg, $gallery);
+
     $wa = 'https://wa.me/212661864602?text=' . urlencode('Bonjour, je souhaite un devis pour : ' . $p['title']);
 @endphp
 
