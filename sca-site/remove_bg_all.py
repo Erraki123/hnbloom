@@ -15,9 +15,6 @@ remove_bg_all.py - إزالة خلفية صور المنتجات مع الحفا
   python remove_bg_all.py                           # تطبيق فعلي على كل الصور
   python remove_bg_all.py --only couloir --mode hybrid --glass-alpha 90
 
-  # نسخ شفافة حقيقية في public/images/solutions_nobg (الأصلية لا تُمس):
-  python remove_bg_all.py --nobg --glass-alpha 255 --only Detection Controle Scanners Videophonie Alarme
-
 الأصلية تبقى دائماً في *_backup ولا تُعدَّل أبداً.
 """
 from __future__ import annotations
@@ -135,9 +132,7 @@ def preview_on_dark(rgba: Image.Image) -> Image.Image:
 # --------------------------------- التشغيل ----------------------------
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--only", nargs="+", help="معالجة الملفات التي يحتوي اسمها على إحدى هذه الكلمات")
-    ap.add_argument("--nobg", action="store_true",
-                    help="يكتب PNG شفافة حقيقية في <folder>_nobg ولا يعدّل الأصلية أبداً")
+    ap.add_argument("--only", help="معالجة الملفات التي يحتوي اسمها على هذه الكلمة")
     ap.add_argument("--mode", choices=["hybrid", "flood", "rembg", "keep"], default=DEFAULT_MODE)
     ap.add_argument("--tol", type=int, default=TOL)
     ap.add_argument("--edge", type=int, default=EDGE)
@@ -158,8 +153,7 @@ def main():
         prev_dir = Path(folder + "_preview")
 
         files = [p for p in backup.rglob("*")
-                 if p.suffix.lower() in EXT
-                 and (not a.only or any(k.lower() in p.stem.lower() for k in a.only))]
+                 if p.suffix.lower() in EXT and (not a.only or a.only.lower() in p.stem.lower())]
         print(f"\n{folder} : {len(files)} images")
 
         for i, orig in enumerate(files, 1):
@@ -167,7 +161,7 @@ def main():
             mode = next((m for k, m in OVERRIDES.items() if k in orig.stem.lower()), a.mode)
             try:
                 if mode == "keep":
-                    if not a.preview and not a.nobg:
+                    if not a.preview:
                         (src / rel).parent.mkdir(parents=True, exist_ok=True)
                         shutil.copy2(orig, src / rel)
                     print(f"[{i}/{len(files)}] keep    {rel}")
@@ -178,10 +172,6 @@ def main():
                     out = (prev_dir / rel).with_suffix(".png")
                     out.parent.mkdir(parents=True, exist_ok=True)
                     preview_on_dark(res).save(out)
-                elif a.nobg:
-                    out = (Path(folder + "_nobg") / rel).with_suffix(".png")
-                    out.parent.mkdir(parents=True, exist_ok=True)
-                    res.save(out, format="PNG")
                 else:
                     target = src / rel               # نفس الاسم ونفس الامتداد
                     target.parent.mkdir(parents=True, exist_ok=True)

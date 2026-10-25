@@ -83,9 +83,12 @@ private static function read(string $file): array
         return $n;
     }
 
-    public static function related(array $p, int $limit = 4): array
-    {
-        $list = array_filter(self::allProducts(), fn ($x) => $x['category'] === $p['category'] && $x['slug'] !== $p['slug']);
-        return array_slice(array_values($list), 0, $limit);
+public static function related(array $p, int $limit = 4): array
+{
+    $list = array_values(array_filter(self::allProducts(), fn ($x) => $x['category'] === $p['category'] && $x['slug'] !== $p['slug']));
+    if (!empty($p['group'])) {
+        usort($list, fn ($a, $b) => (($b['group'] ?? null) === $p['group']) <=> (($a['group'] ?? null) === $p['group']));
     }
+    return array_slice($list, 0, $limit);
+}
 }

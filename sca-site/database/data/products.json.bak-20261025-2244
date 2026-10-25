@@ -1,0 +1,638 @@
+{
+    "lm1-lave-main-automatise-trx": {
+        "slug": "lm1-lave-main-automatise-trx",
+        "title": "LM1 Lave-main automatisé TRX",
+        "subtitle": "",
+        "url": "https://hnbloom.com/produit/lm1-lave-main-automatise-trx/",
+        "solution": "hygiene-agro-alimentaire",
+        "category": "hygiene-agro-alimentaire",
+        "image": "images/products/lm1-lave-main-automatise-trx/cat9.jpg",
+        "gallery": [
+            "images/products/lm1-lave-main-automatise-trx/cat9.jpg"
+        ],
+        "features": [
+            "Lave Mains automatique en inox Grade 304, pour une prévention efficace contre la propagation des bactéries et virus.",
+            "Système automatisé par capteurs de proximité et séquence bien définie Eau + Savon + Eau",
+            "Peut etre couplé avec tous les obstacles physiques à contact sec (Tourniquet Tripode, couloir rapide, lave semelles, etc).",
+            "Voyants à LED pour indiquer le bon déroulement du processus.",
+            "Dosage du produit réglable localement et par interface PC."
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "ls1-lave-semelles-automatise-trx": {
+        "slug": "ls1-lave-semelles-automatise-trx",
+        "title": "LS1 Lave-Semelles automatisé TRX",
+        "subtitle": "",
+        "url": "https://hnbloom.com/produit/ls1-lave-semelles-automatise-trx/",
+        "solution": "hygiene-agro-alimentaire",
+        "category": "hygiene-agro-alimentaire",
+        "image": "images/products/ls1-lave-semelles-automatise-trx/LS1-800x800-1.png",
+        "gallery": [
+            "images/products/ls1-lave-semelles-automatise-trx/LS1-800x800-1.png"
+        ],
+        "features": [
+            "Lave semelles automatique",
+            "Compact en inox 304",
+            "Nettoyage des semelles avec désinfectant ou savon et eau (Electrovanne pour l’eau et pompe pour le désinfectant)",
+            "Le dosage des produits désinfectants et savon est réglable et se fait par pompe pour un meilleur contrôle",
+            "Le nettoyage des semelles par 2 brosses rotatives avec injection au début d’une dose de désinfectant suivi d’un long cycle d’eau pour rinçage",
+            "Bouton arrêt d’urgence apparent pour plus de sécurité",
+            "4 pieds réglables pour ajustement horizontal"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "lsh-sas-desinfection-mains-et-semelles-trx": {
+        "slug": "lsh-sas-desinfection-mains-et-semelles-trx",
+        "title": "LSH SAS Désinfection mains et semelles TRX",
+        "subtitle": "",
+        "url": "https://hnbloom.com/produit/lsh-sas-desinfection-mains-et-semelles-trx/",
+        "solution": "hygiene-agro-alimentaire",
+        "category": "hygiene-agro-alimentaire",
+        "image": "images/products/lsh-sas-desinfection-mains-et-semelles-trx/LSH-e1749204808566.png",
+        "gallery": [
+            "images/products/lsh-sas-desinfection-mains-et-semelles-trx/LSH-e1749204808566.png"
+        ],
+        "features": [
+            "Lave semelles automatique et désinfection des mains",
+            "Inox Grade 304",
+            "2 brosses 800mm",
+            "Nettoyage des semelles en deux phases réglables, désinfectant ou savon et eau en premier suivi d’une phase eau uniquement pour rinçage.",
+            "Réglage dose savon ou désinfectant",
+            "Réglage temps de lavage 4, 6 ou 8 secondes",
+            "Contrôle niveau savon ou désinfectant.",
+            "Blocage ou non si manque savon ou désinfectant.",
+            "Bouton d’arrêt d’urgence apparent pour plus de sécurité",
+            "4 pieds réglables pour ajustement horizontal",
+            "Désinfectant automatique des deux mains avec controle niveau du désinfectant",
+            "Tourniquet Tripode pour bloquer/liberer le passage"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "lsmh-sas-hygiene-complet-trx": {
+        "slug": "lsmh-sas-hygiene-complet-trx",
+        "title": "LSMH Sas Hygiène complet TRX",
+        "subtitle": "",
+        "url": "https://hnbloom.com/produit/lsmh-sas-hygiene-complet-trx/",
+        "solution": "hygiene-agro-alimentaire",
+        "category": "hygiene-agro-alimentaire",
+        "image": "images/products/lsmh-sas-hygiene-complet-trx/cat5-1.jpg",
+        "gallery": [
+            "images/products/lsmh-sas-hygiene-complet-trx/cat5-1.jpg"
+        ],
+        "features": [
+            "Sas Hygiène à passage obligatoire",
+            "Compact en inox 304",
+            "Le dosage des produits désinfectants et savon est réglable et se fait par pompe pour un meilleur contrôle",
+            "Le nettoyage des semelles par 2 brosses rotatives avec injection au début d’une dose de désinfectant suivi d’un long cycle d’eau pour rinçage",
+            "Bouton arrêt d’urgence apparent pour plus de sécurité",
+            "Système modulaire avec trois automates programmables",
+            "4 pieds réglables pour ajustement horizontal",
+            "Peut intégrer un sèche mains selon le besoin"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "lvb-lave-botte-manuel-trx": {
+        "slug": "lvb-lave-botte-manuel-trx",
+        "title": "LVB Lave-botte manuel TRX",
+        "subtitle": "",
+        "url": "https://hnbloom.com/produit/lvb-lave-botte-manuel-trx/",
+        "solution": "hygiene-agro-alimentaire",
+        "category": "hygiene-agro-alimentaire",
+        "image": "images/products/lvb-lave-botte-manuel-trx/Lave-bottes-manuel.jpg",
+        "gallery": [
+            "images/products/lvb-lave-botte-manuel-trx/Lave-bottes-manuel.jpg"
+        ],
+        "features": [
+            "Lave Bottes manuel en inox 304"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "lvba-lave-bottes-automatise-trx": {
+        "slug": "lvba-lave-bottes-automatise-trx",
+        "title": "LVBA Lave-bottes automatisé TRX",
+        "subtitle": "",
+        "url": "https://hnbloom.com/produit/lvba-lave-bottes-automatise-trx/",
+        "solution": "hygiene-agro-alimentaire",
+        "category": "hygiene-agro-alimentaire",
+        "image": "images/products/lvba-lave-bottes-automatise-trx/1-upd.png",
+        "gallery": [
+            "images/products/lvba-lave-bottes-automatise-trx/1-upd.png"
+        ],
+        "features": [
+            "Lave-bottes automatisé en Inox Grade 304",
+            "Déclenchement par détecteur de proximité",
+            "2 brosses horizontales 350 mm",
+            "3 brosses verticales 300 mm",
+            "Nettoyage des semelles en deux phases réglables, désinfectant ou savon et eau en premier suivi d’une phase eau uniquement pour rinçage.",
+            "Bouton d’arrêt d’urgence apparent pour plus de sécurité",
+            "4 pieds réglables pour ajustement horizontal"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "lvmx-ir-lave-main-a-commande-ir-trx": {
+        "slug": "lvmx-ir-lave-main-a-commande-ir-trx",
+        "title": "LVMX-IR Lave main à commande IR TRX",
+        "subtitle": "",
+        "url": "https://hnbloom.com/produit/lvmx-ir-lave-main-a-commande-ir-trx/",
+        "solution": "hygiene-agro-alimentaire",
+        "category": "hygiene-agro-alimentaire",
+        "image": "images/products/lvmx-ir-lave-main-a-commande-ir-trx/2-upd.png",
+        "gallery": [
+            "images/products/lvmx-ir-lave-main-a-commande-ir-trx/2-upd.png"
+        ],
+        "features": [
+            "Lave-mains commande à détecteur infrarouge 1,2 ou 3 postes",
+            "détecteurs IR, électrovannes",
+            "Inox 304, ep 1,5mm",
+            "Fixation murale"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "sh1-sas-desinfection-des-mains-trx": {
+        "slug": "sh1-sas-desinfection-des-mains-trx",
+        "title": "SH1 SAS Désinfection des mains TRX",
+        "subtitle": "",
+        "url": "https://hnbloom.com/produit/sh1-sas-desinfection-des-mains-trx/",
+        "solution": "hygiene-agro-alimentaire",
+        "category": "hygiene-agro-alimentaire",
+        "image": "images/products/sh1-sas-desinfection-des-mains-trx/SH1-1-e1749204837377.png",
+        "gallery": [
+            "images/products/sh1-sas-desinfection-des-mains-trx/SH1-1-e1749204837377.png"
+        ],
+        "features": [
+            "Sas d’hygiène en inox-304, désinfectant automatique des mains avec tourniquet tripode pour obstacle physique.",
+            "L’utilisateur introduit ses deux mains pour recevoir le désinfectant avant de pouvoir passer.",
+            "Réglage de la dose, détecteur de présence,",
+            "compatible avec tout système de contrôle d’accès à contact sec.",
+            "Tourniquet à bras rabattable en cas de coupure de courant ou urgence"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "hn1": {
+        "slug": "hn1",
+        "title": "TR1",
+        "subtitle": "Tourniquet tripode 1 pied acier galvanisé",
+        "url": "https://hnbloom.com/produit/hn1/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "tourniquets",
+        "image": "images/solutions/obstacles-physiques-automatise/trx-3.jpg",
+        "gallery": [
+            "images/solutions/obstacles-physiques-automatise/trx-3.jpg"
+        ],
+        "features": [
+            "Tourniquet Tripode Bidirectionnel à 1 pied.",
+            "Bras Rabattables en cas d’évacuation d’urgence ou coupure d’électricité.",
+            "Entrée d’urgence.",
+            "Configuration par menu à Led.",
+            "Indicateurs de passage à LED (Vert/Rouge)",
+            "Acier Galvanisé peinture epoxy – Epaisseur 1,5 mm",
+            "Couleur RAL selon palette TRX",
+            "Alimentation: 220V/110V AC, 50/60HzA Contacts secs, et Protocole TRX en option (USB et TCP-IP)",
+            "Contrôle d’accès intégré en option"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "hn1-pro": {
+        "slug": "hn1-pro",
+        "title": "TR1-Pro",
+        "subtitle": "Tourniquet tripode 1 pied Inox",
+        "url": "https://hnbloom.com/produit/hn1-pro/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "tourniquets",
+        "image": "images/products/hn1-pro/trx2.jpg",
+        "gallery": [
+            "images/products/hn1-pro/trx2.jpg"
+        ],
+        "features": [
+            "Tourniquet Tripode Bidirectionnel à 1 pied",
+            "Bras Rabattables en cas d’évacuation d’urgence ou coupure d’électricité. Entrée d’urgence.",
+            "Configuration par menu à Led.",
+            "Indicateurs de passage à LED (Vert/Rouge)",
+            "Inox satiné Grade 304 Epaisseur 1,5 mm",
+            "Alimentation: 220V/110V AC, 50/60Hz",
+            "A Contacts secs, et Protocole TRX en option (USB et TCP-IP)",
+            "Contrôle d’accès intégré en option"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "tr2": {
+        "slug": "tr2",
+        "title": "TR2",
+        "subtitle": "Tourniquet Tripode 2 pieds acier galvanisé",
+        "url": "https://hnbloom.com/produit/tr2/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "tourniquets",
+        "image": "images/products/tr2/trx3.jpg",
+        "gallery": [
+            "images/products/tr2/trx3.jpg"
+        ],
+        "features": [
+            "Tourniquet Tripode Bidirectionnel à 2 pieds",
+            "Bras Rabattables en cas d’évacuation d’urgence ou coupure d’électricité.",
+            "Entrée d’urgence.",
+            "Configuration par menu à Led.",
+            "Indicateurs de passage à LED (Vert/Rouge)",
+            "Acier Galvanisé peinture epoxy – Epaisseur 1,5 mm",
+            "Couleur RAL selon palette TRX",
+            "Alimentation: 220V/110V AC, 50/60HzA Contacts secs, et Protocole TRX en option (USB et TCP-IP)",
+            "Contrôle d’accès intégré en option"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "tr2-pro": {
+        "slug": "tr2-pro",
+        "title": "TR2-Pro",
+        "subtitle": "Tourniquet tripode 2 pieds Inox",
+        "url": "https://hnbloom.com/produit/tr2-pro/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "tourniquets",
+        "image": "images/products/tr2-pro/Tourniquets.jpg",
+        "gallery": [
+            "images/products/tr2-pro/Tourniquets.jpg"
+        ],
+        "features": [
+            "Tourniquet Tripode Bidirectionnel à 2 pieds",
+            "Bras Rabattables en cas d’évacuation d’urgence ou coupure d’électricité. Entrée d’urgence.",
+            "Configuration par menu à Led.",
+            "Indicateurs de passage à LED (Vert/Rouge)",
+            "Inox satiné Grade 304 Epaisseur 1,5 mm",
+            "Alimentation: 220V/110V AC, 50/60Hz",
+            "A Contacts secs, et Protocole TRX en option (USB et TCP-IP)",
+            "Contrôle d’accès intégré en option"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "tr2-pro-2": {
+        "slug": "tr2-pro-2",
+        "title": "TR2-Pro+",
+        "subtitle": "Tourniquet tripode 2 pieds Inox",
+        "url": "https://hnbloom.com/produit/tr2-pro-2/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "tourniquets",
+        "image": "images/products/tr2-pro-2/trx22.jpg",
+        "gallery": [
+            "images/products/tr2-pro-2/trx22.jpg"
+        ],
+        "features": [
+            "Tourniquet Tripode Bidirectionnel à 2 pieds",
+            "Bras Rabattables en cas d’évacuation d’urgence ou coupure d’électricité. Entrée d’urgence.",
+            "Configuration par menu à Led.",
+            "Indicateurs de passage à LED (Vert/Rouge)",
+            "Inox satiné Grade 304 Epaisseur 1,5 mm",
+            "Alimentation: 220V/110V AC, 50/60Hz",
+            "A Contacts secs, et Protocole en option (USB et TCP-IP)",
+            "Contrôle d’accès intégré en option"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "tr2-pro-d": {
+        "slug": "tr2-pro-d",
+        "title": "TR2-Pro+ D",
+        "subtitle": "Tourniquet tripode double passage 2 pieds Inox",
+        "url": "https://hnbloom.com/produit/tr2-pro-d/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "tourniquets",
+        "image": "images/products/tr2-pro-d/trx33.jpg",
+        "gallery": [
+            "images/products/tr2-pro-d/trx33.jpg"
+        ],
+        "features": [
+            "Tourniquet Tripode Double Passage Bidirectionnel à 2 pieds",
+            "Bras Rabattables en cas d’évacuation d’urgence ou coupure d’électricité. Entrée d’urgence.",
+            "Configuration par menu à Led.",
+            "Indicateurs de passage à LED (Vert/Rouge)",
+            "Inox satiné Grade 304 Epaisseur 1,5 mm",
+            "Alimentation: 220V/110V AC, 50/60Hz",
+            "A Contacts secs, et Protocole en option (USB et TCP-IP)",
+            "Contrôle d’accès intégré en option"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "cr1": {
+        "slug": "cr1",
+        "title": "CR1",
+        "subtitle": "Couloir rapide volets rétractables",
+        "url": "https://hnbloom.com/produit/cr1/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "couloirs-rapides",
+        "image": "images/products/cr1/cr-hn-1.png",
+        "gallery": [
+            "images/products/cr1/cr-hn-1.png"
+        ],
+        "features": [
+            "Couloir rapide Bidirectionnel",
+            "Inox satiné Grade 304- 1,5mm",
+            "afficheurs à led pour indication de passage(Vert/Rouge).",
+            "Menu de configuration à LCD .",
+            "Entrée d’urgence",
+            "Volets escamotables en plexi 12mm transparents eclairés bleu. Top vitre stadip 10mm",
+            "Alimentation: 220V/110V AC, 50/60Hz",
+            "A contacts secs et protocol en option",
+            "Contrôle d’accès intégré en option"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "cr3": {
+        "slug": "cr3",
+        "title": "CR3",
+        "subtitle": "Couloir rapide volets glissants",
+        "url": "https://hnbloom.com/produit/cr3/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "couloirs-rapides",
+        "image": "images/products/cr3/cr-hn-2.png",
+        "gallery": [
+            "images/products/cr3/cr-hn-2.png"
+        ],
+        "features": [
+            "Couloir rapide Bidirectionnel,",
+            "Inox satiné Grade 304- 1,5mm,",
+            "Afficheurs à led pour indication de passage(Vert/Rouge). Alarme sonore et visuelle.",
+            "Menu de configuration à LCD . Entrée d’urgence",
+            "Volets glissants hauteur 1,5m en plexiglas 12mm transparents eclairés bleu. Top vitre stadip 10mm",
+            "Alimentation: 220V/110V AC, 50/60Hz",
+            "A contacts secs et protocol en option",
+            "Contrôle d’accès intégré en option"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "cr4": {
+        "slug": "cr4",
+        "title": "CR4",
+        "subtitle": "Couloir rapide volets pivotants",
+        "url": "https://hnbloom.com/produit/cr4/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "couloirs-rapides",
+        "image": "images/products/cr4/CR4.jpg",
+        "gallery": [
+            "images/products/cr4/CR4.jpg"
+        ],
+        "features": [
+            "Couloir rapide Bidirectionnel,",
+            "Inox satiné Grade 304- 1,5mm,",
+            "Indication de passage (Vert/Rouge).",
+            "Alarme sonore et visuelle",
+            "Menu de configuration à LCD . Entrée d’urgence",
+            "Volets pivotants en plexi 10mm transparents.",
+            "Top vitre stadip 10mm",
+            "Alimentation: 220V/110V AC, 50/60Hz",
+            "A contacts secs et protocol en option",
+            "Contrôle d’accès intégré en option"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "cr5": {
+        "slug": "cr5",
+        "title": "CR5",
+        "subtitle": "Couloir rapide volets pivotants",
+        "url": "https://hnbloom.com/produit/cr5/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "couloirs-rapides",
+        "image": "images/products/cr5/cr5.jpg",
+        "gallery": [
+            "images/products/cr5/cr5.jpg"
+        ],
+        "features": [
+            "Couloir rapide 1 passage Bidirectionnel,",
+            "Inox satiné Grade 304- 1,5mm,",
+            "Indication de passage (Flèche Vert/ Croix Rouge). Alarme sonore et visuelle;",
+            "Menu de configuration à LCD . Entrée d’urgence",
+            "Volets pivotants en plexi 10mm transparents.",
+            "Top vitre stadip 10mm",
+            "Alimentation: 220V/110V AC, 50/60Hz"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "pr1": {
+        "slug": "pr1",
+        "title": "PR1",
+        "subtitle": "Portillon automatique PMR",
+        "url": "https://hnbloom.com/produit/pr1/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "portillons-pmr",
+        "image": "images/products/pr1/trx-4.jpg",
+        "gallery": [
+            "images/products/pr1/trx-4.jpg"
+        ],
+        "features": [
+            "Portillon automatique Bidirectionnel pour PMR.",
+            "Inox satiné Grade 304 Epaisseur 1,5mm",
+            "Volet en plexiglas 10mm.",
+            "Menu de configuration. Entrée d’urgence",
+            "A Contacts secs, et Protocol en option (USB et TCP-IP)",
+            "Alimentation: 220V/110V AC, 50/60Hz"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "pr2": {
+        "slug": "pr2",
+        "title": "PR2",
+        "subtitle": "Portillon automatique PMR",
+        "url": "https://hnbloom.com/produit/pr2/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "portillons-pmr",
+        "image": "images/products/pr2/trx2-1.jpg",
+        "gallery": [
+            "images/products/pr2/trx2-1.jpg"
+        ],
+        "features": [
+            "Portillon automatique Bidirectionnel pour PMR.",
+            "Inox satiné Grade 304 Epaisseur 1,5mm",
+            "Volet en plexiglas 10mm.",
+            "Menu de configuration. Entrée d’urgence",
+            "A Contacts secs, et Protocol en option (USB et TCP-IP)",
+            "Alimentation: 220V/110V AC, 50/60Hz"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "prh1": {
+        "slug": "prh1",
+        "title": "PRH1",
+        "subtitle": "Portillon automatique pleine hauteur",
+        "url": "https://hnbloom.com/produit/prh1/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "portillons-pmr",
+        "image": "images/products/prh1/trx3-1.jpg",
+        "gallery": [
+            "images/products/prh1/trx3-1.jpg"
+        ],
+        "features": [
+            "Portillion automatique Pleine Hauteur Bidirectionnel",
+            "motorisé",
+            "Indicateur led de passage",
+            "compatible avec tout système de contrôle d’accès",
+            "Acier galvanisé, Inox-304 ou mixte Acier galvanisé/Inox -304",
+            "Inox-316 en option"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "prm": {
+        "slug": "prm",
+        "title": "PRM",
+        "subtitle": "Portillon manuel",
+        "url": "https://hnbloom.com/produit/prm/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "portillons-pmr",
+        "image": "images/products/prm/trx4.jpg",
+        "gallery": [
+            "images/products/prm/trx4.jpg"
+        ],
+        "features": [
+            "Portillon manuel à ressort gauche ou droit en inox Grade 304"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "prt": {
+        "slug": "prt",
+        "title": "PRT",
+        "subtitle": "Portillon manuel pivotant",
+        "url": "https://hnbloom.com/produit/prt/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "portillons-pmr",
+        "image": "images/products/prt/trx5.jpg",
+        "gallery": [
+            "images/products/prt/trx5.jpg"
+        ],
+        "features": [
+            "Portillon manuel tournant en inox Grade 304"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "br1": {
+        "slug": "br1",
+        "title": "BR1",
+        "subtitle": "Barrière automatique",
+        "url": "https://hnbloom.com/produit/br1/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "barrieres-automatiques",
+        "image": "images/products/br1/BR1-OB2-1.jpg",
+        "gallery": [
+            "images/products/br1/BR1-OB2-1.jpg"
+        ],
+        "features": [
+            "Barrière automatique réversible",
+            "Lisse réglable de 4 à 6m",
+            "Acier galvanisé, peinture epoxy bi-ton",
+            "Signalisation (Fleche verte/Interdit rouge)",
+            "Livrée avec 2 télécommandes",
+            "Vitesse d’ouverture 1-6s réglable",
+            "Décélération réglable",
+            "Système anti-collision"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "prh1-2": {
+        "slug": "prh1-2",
+        "title": "PRH1",
+        "subtitle": "Portillon automatique pleine hauteur",
+        "url": "https://hnbloom.com/produit/prh1-2/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "tourniquets-pleine-hauteur",
+        "image": "images/products/prh1-2/PRH1-800x800-1.png",
+        "gallery": [
+            "images/products/prh1-2/PRH1-800x800-1.png"
+        ],
+        "features": [
+            "Portillion automatique Pleine Hauteur Bidirectionnel",
+            "motorisé",
+            "Indicateur led de passage",
+            "compatible avec tout système de contrôle d’accès",
+            "Acier galvanisé, Inox-304 ou mixte Acier galvanisé/Inox -304",
+            "Inox-316 en option"
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "trh1": {
+        "slug": "trh1",
+        "title": "TRH1",
+        "subtitle": "Tourniquet pleine hauteur 120°",
+        "url": "https://hnbloom.com/produit/trh1/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "tourniquets-pleine-hauteur",
+        "image": "images/products/trh1/hn1.png",
+        "gallery": [
+            "images/products/trh1/hn1.png"
+        ],
+        "features": [
+            "Tourniquet Pleine Hauteur",
+            "Simple passage et Double Passage bidirectionnel",
+            "3 rangées de 9 bras à 120°",
+            "Acier Galvanisé peinture électrostatique, Inox-304 ou mixte acier galvanisé/Inox",
+            "Inox 316 en option",
+            "Passage libre ou fermé en cas de coupure d’électricité paramétrable.",
+            "Compatible avec tous les systémes de Contrôle d’accès."
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "trh4": {
+        "slug": "trh4",
+        "title": "TRH4",
+        "subtitle": "Tourniquet pleine hauteur 90°",
+        "url": "https://hnbloom.com/produit/trh4/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "tourniquets-pleine-hauteur",
+        "image": "images/products/trh4/hn-pd.png",
+        "gallery": [
+            "images/products/trh4/hn-pd.png"
+        ],
+        "features": [
+            "Tourniquet Pleine Hauteur",
+            "Simple passage et Double Passage bidirectionnel",
+            "4 rangées de 11 bras à 90°",
+            "Acier Galvanisé peinture électrostatique, Inox-304 ou mixte acier galvanisé/Inox",
+            "Inox 316 en option",
+            "Passage libre ou fermé en cas de coupure d’électricité paramétrable.",
+            "Compatible avec tous les systémes de Contrôle d’accès."
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    },
+    "trm1": {
+        "slug": "trm1",
+        "title": "TRM1",
+        "subtitle": "Tourniquet mi-hauteur 120°",
+        "url": "https://hnbloom.com/produit/trm1/",
+        "solution": "obstacles-physiques-automatise",
+        "category": "tourniquets-pleine-hauteur",
+        "image": "images/products/trm1/TRM.jpg",
+        "gallery": [
+            "images/products/trm1/TRM.jpg"
+        ],
+        "features": [
+            "Tourniquet MiHauteur",
+            "Simple passage bidirectionnel",
+            "3 rangées de 4 bras à 120°",
+            "Acier Galvanisé peinture électrostatique, Inox-304 ou mixte acier galvanisé/Inox",
+            "Inox 316 en option",
+            "Passage libre ou fermé en cas de coupure d’électricité paramétrable.",
+            "Compatible avec tous les systémes de Contrôle d’accès."
+        ],
+        "paragraphs": [],
+        "pdfs": []
+    }
+}

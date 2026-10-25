@@ -85,6 +85,9 @@
     </main>
 </div>
 
+{{-- Boutons flottants à droite : WhatsApp, appel, réseaux sociaux --}}
+@include('partials.hb-floating-contact')
+
 {{-- Menu mobile : fonctionne même si Alpine n'est pas chargé --}}
 <script>
 (function () {
