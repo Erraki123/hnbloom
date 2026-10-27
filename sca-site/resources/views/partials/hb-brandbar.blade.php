@@ -3,7 +3,9 @@
     $brands = [
         ['name' => 'ZKTeco', 'img' => 'images/brands/zkteco.png', 'type' => 'zk'],
         ['name' => 'G4',     'img' => 'images/brands/g4.png',     'type' => 'g4'],
+        ['name' => 'TRX',    'img' => 'images/brands/trx.png',    'type' => 'trx'],
     ];
+    $brandClass = fn ($type) => ['g4' => 'is-g4', 'trx' => 'is-trx'][$type] ?? '';
 @endphp
 
 @once
@@ -58,10 +60,24 @@
     }
     .hb-bb-logo.is-g4 .hb-bb-txt-g4 { color: #111; font-size: 22px; letter-spacing: -.5px; }
 
+    /* Logo TRX : pastille blanche (le logo a un fond blanc) avec bordure dorée */
+    .hb-bb-logo.is-trx {
+        height: 44px; min-width: 84px;
+        box-sizing: border-box;
+        padding: 5px 12px;
+        background: #fff;
+        border: 2px solid #d6ad55;
+        border-radius: 8px;
+        box-shadow: 0 4px 14px rgba(0,0,0,.45), 0 0 0 3px rgba(233,196,111,.2);
+    }
+    .hb-bb-logo.is-trx img { height: 100%; width: auto; max-width: 110px; object-fit: contain; }
+
     .hb-bb-txt-zk { font: italic 900 30px/1 Arial, Helvetica, sans-serif; color: #fff; letter-spacing: -1px; }
     .hb-bb-txt-zk b { color: #6cc24a; font-weight: 900; }
     .hb-bb-txt-zk small { font-size: 16px; color: #6cc24a; font-style: italic; font-weight: 800; letter-spacing: 0; }
     .hb-bb-txt-g4 { font: 700 32px/1 Arial, Helvetica, sans-serif; color: #fff; letter-spacing: -1px; }
+    .hb-bb-txt-trx { font: 900 22px/1 Arial, Helvetica, sans-serif; color: #4a4d52; letter-spacing: 1px; }
+    .hb-bb-txt-trx b { color: #7ac143; font-weight: 900; }
     .hb-bb-sep { flex: none; width: 1px; height: 28px; background: rgba(214,173,85,.55); }
 
     /* Barre du haut : défilement continu */
@@ -85,6 +101,7 @@
     .hb-bb-viewport::-webkit-scrollbar { display: none; }
     .hb-bb-viewport .hb-bb-logo { height: 40px; }
     .hb-bb-viewport .hb-bb-logo.is-g4 { width: 56px; height: 56px; }
+    .hb-bb-viewport .hb-bb-logo.is-trx { height: 46px; }
     .hb-bb-viewport .hb-bb-txt-zk { font-size: 36px; }
     .hb-bb-viewport .hb-bb-txt-g4 { font-size: 38px; }
     .hb-bb-viewport .hb-bb-logo.is-g4 .hb-bb-txt-g4 { font-size: 22px; }
@@ -98,6 +115,8 @@
         .hb-bb-track, .hb-bb-group { gap: 34px; }
         .hb-bb-logo.is-g4,
         .hb-bb-viewport .hb-bb-logo.is-g4 { width: 46px; height: 46px; min-width: 46px; padding: 4px; }
+        .hb-bb-logo.is-trx,
+        .hb-bb-viewport .hb-bb-logo.is-trx { height: 38px; min-width: 70px; padding: 4px 9px; }
     }
     @media (prefers-reduced-motion: reduce) { .hb-bb-track { animation: none; } }
 </style>
@@ -117,11 +136,13 @@
                     <div class="hb-bb-group" @if($copy) aria-hidden="true" @endif>
                         @for($r = 0; $r < 3; $r++)
                             @foreach($brands as $b)
-                                <span class="hb-bb-logo {{ $b['type'] === 'g4' ? 'is-g4' : '' }}">
+                                <span class="hb-bb-logo {{ $brandClass($b['type']) }}">
                                     @if(file_exists(public_path($b['img'])))
                                         <img src="{{ asset($b['img']) }}" alt="{{ $b['name'] }}" loading="lazy">
                                     @elseif($b['type'] === 'zk')
                                         <span class="hb-bb-txt-zk">ZK<b>T</b><small>eco</small></span>
+                                    @elseif($b['type'] === 'trx')
+                                        <span class="hb-bb-txt-trx"><b>T</b>RX</span>
                                     @else
                                         <span class="hb-bb-txt-g4">G4</span>
                                     @endif
@@ -150,11 +171,13 @@
         </button>
         <div class="hb-bb-viewport" data-bb-view>
             @foreach($brands as $b)
-                <span class="hb-bb-logo {{ $b['type'] === 'g4' ? 'is-g4' : '' }}">
+                <span class="hb-bb-logo {{ $brandClass($b['type']) }}">
                     @if(file_exists(public_path($b['img'])))
                         <img src="{{ asset($b['img']) }}" alt="{{ $b['name'] }}" loading="lazy">
                     @elseif($b['type'] === 'zk')
                         <span class="hb-bb-txt-zk">ZK<b>T</b><small>eco</small></span>
+                    @elseif($b['type'] === 'trx')
+                        <span class="hb-bb-txt-trx"><b>T</b>RX</span>
                     @else
                         <span class="hb-bb-txt-g4">G4</span>
                     @endif

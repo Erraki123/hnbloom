@@ -18,6 +18,7 @@ Mettre ce fichier dans le même dossier que remove_bg_all.py, puis :
     python prepare_images.py --only speedface --preview
     python prepare_images.py                           # application réelle
     python prepare_images.py --mode flood              # sans rembg (plus rapide)
+    python prepare_images.py --skip-existing           # ne traite que les nouvelles images
 """
 from __future__ import annotations
 
@@ -81,6 +82,8 @@ def main():
     ap.add_argument("--min-side", type=int, default=600)
     ap.add_argument("--pad", type=float, default=0.06, help="marge autour du produit")
     ap.add_argument("--quality", type=int, default=90)
+    ap.add_argument("--skip-existing", action="store_true",
+                    help="ne retraite pas les images déjà créées dans <dst> (utile après un 2e catalogue)")
     ap.add_argument("--preview", action="store_true",
                     help="écrit des aperçus sur fond sombre dans <dst>_preview, sans toucher <dst>")
     a = ap.parse_args()
@@ -94,9 +97,12 @@ def main():
                    if p.suffix.lower() in EXT and (not a.only or a.only.lower() in str(p).lower()))
     print(f"{len(files)} images  ->  {out_root}")
 
-    mode, fallbacks, errors = a.mode, 0, 0
+    mode, fallbacks, errors, skipped = a.mode, 0, 0, 0
     for i, f in enumerate(files, 1):
         rel = f.relative_to(src)
+        if a.skip_existing and not a.preview and (dst / rel).with_suffix(".webp").exists():
+            skipped += 1
+            continue
         try:
             img = Image.open(f)
             img.load()
@@ -128,7 +134,7 @@ def main():
             errors += 1
             print(f"[{i}/{len(files)}] ERREUR {rel} : {e}")
 
-    print(f"\nTerminé. {len(files) - errors} OK, {errors} erreurs, {fallbacks} en repli 'flood'.")
+    print(f"\nTerminé. {len(files) - errors - skipped} traitées, {skipped} déjà faites, {errors} erreurs, {fallbacks} en repli 'flood'.")
     if a.preview:
         print(f"Regardez les aperçus dans : {out_root.resolve()}")
 

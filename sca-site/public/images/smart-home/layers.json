@@ -1,0 +1,58 @@
+{
+ "salon": {
+  "f": "layers/salon.webp",
+  "x": 16.602,
+  "y": 27.246,
+  "w": 23.828,
+  "h": 23.438
+ },
+ "cuisine": {
+  "f": "layers/cuisine.webp",
+  "x": 47.266,
+  "y": 38.672,
+  "w": 17.643,
+  "h": 28.32
+ },
+ "sdb": {
+  "f": "layers/sdb.webp",
+  "x": 51.888,
+  "y": 23.34,
+  "w": 15.365,
+  "h": 23.047
+ },
+ "bureau": {
+  "f": "layers/bureau.webp",
+  "x": 65.885,
+  "y": 33.984,
+  "w": 18.164,
+  "h": 23.242
+ },
+ "chambre2": {
+  "f": "layers/chambre2.webp",
+  "x": 46.68,
+  "y": 4.688,
+  "w": 19.922,
+  "h": 25.586
+ },
+ "chambre1": {
+  "f": "layers/chambre1.webp",
+  "x": 27.604,
+  "y": 3.32,
+  "w": 20.182,
+  "h": 27.734
+ },
+ "jardin": {
+  "f": "layers/jardin.webp",
+  "x": 4.102,
+  "y": 0.977,
+  "w": 95.898,
+  "h": 99.023
+ },
+ "chambre3": {
+  "f": "layers/chambre3.webp",
+  "x": 60.482,
+  "y": 15.43,
+  "w": 22.461,
+  "h": 24.609
+ }
+}
