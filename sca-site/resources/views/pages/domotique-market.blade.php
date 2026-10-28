@@ -19,6 +19,12 @@
         $hlFiles = [
             'normal' => 'living-room-normal', 'open' => 'living-room-curtains-open', 'warm' => 'living-room-warm-light',
             'night'  => 'living-room-night',  'closed' => 'living-room-curtains-closed', 'party' => 'living-room-party',
+            'offClosed' => 'living-room-no-lights',        // lumières éteintes, rideaux fermés
+            'offOpen'   => 'living-room-night-no-lights',  // lumières éteintes, rideaux ouverts (nuit)
+            'fireOpen'   => 'living-room-fireplace-on-lights-off',       // cheminée allumée, lumières éteintes, rideaux ouverts
+            'fireClosed' => 'living-room-fireplace-on-curtains-closed',  // cheminée allumée, lumières éteintes, rideaux fermés
+            'rgbWhite' => 'living-room-rgbw-white', 'rgbViolet' => 'living-room-rgbw-violet', 'rgbCyan' => 'living-room-rgbw-cyan',
+            'rgbBlue'  => 'living-room-rgbw-blue',  'rgbGreen'  => 'living-room-rgbw-green',  'rgbRed'  => 'living-room-rgbw-red',   // LED RGBW : lumières éteintes, rideaux fermés
         ];
         $map = collect($hlFiles)->map(function ($f) use ($hlBase) {
             foreach (['webp', 'png'] as $e) {
@@ -210,7 +216,11 @@
     const NAMES = {
         normal: ['Jour', 'Lumière naturelle, voilages tirés'], open: ['Panorama', 'Voilages ouverts sur la ville'],
         warm: ['Détente', 'Ambiance chaude de fin de journée'], night: ['Nuit', 'Skyline et éclairage indirect'],
-        closed: ['Cinéma', 'Rideaux fermés, écran prêt'], party: ['Soirée', 'LED couleur et ambiance festive']
+        closed: ['Cinéma', 'Rideaux fermés, écran prêt'], party: ['Soirée', 'LED couleur et ambiance festive'],
+        offClosed: ['Éteint', 'Lumières éteintes, rideaux fermés'], offOpen: ['Nuit calme', 'Lumières éteintes, vue sur la ville'],
+        fireOpen: ['Cheminée', 'Feu allumé, vue sur la ville'], fireClosed: ['Cheminée', 'Feu allumé, rideaux fermés'],
+        rgbWhite: ['LED blanche', 'Éclairage LED blanc, lumières éteintes'], rgbViolet: ['LED violette', 'Ambiance violette, lumières éteintes'], rgbCyan: ['LED cyan', 'Ambiance cyan, lumières éteintes'],
+        rgbBlue: ['LED bleue', 'Ambiance bleue, lumières éteintes'], rgbGreen: ['LED verte', 'Ambiance verte, lumières éteintes'], rgbRed: ['LED rouge', 'Ambiance rouge, lumières éteintes']
     };
 
     /* ---------- État de la maison (piloté par l'application) ---------- */
@@ -221,7 +231,22 @@
     const RECT = { party: [0.7539, 0.5602, 0.8172, 0.6742], std: [0.7545, 0.5205, 0.8176, 0.6320] };
     const rectOf = (k) => (k === 'party' ? RECT.party : RECT.std);
     const hueOf = (k) => (k === 'party' && S.rgb ? LED[S.rgb] : -1);
-    const target = () => (S.rgb ? 'party' : S.curtains ? 'closed' : S.mood);
+    const missing = {};                                   /* images introuvables (retour à l'assombrissement) */
+    const fireImg = (k) => k === 'fireClosed' || k === 'fireOpen';
+    const RGBW_IMG = { white: 'rgbWhite', violet: 'rgbViolet', cyan: 'rgbCyan', blue: 'rgbBlue', green: 'rgbGreen', red: 'rgbRed' };   /* couleurs avec vraie photo */
+    const rgbImg = (k) => /^rgb[A-Z]/.test(k);
+    const offImg = (k) => k === 'offClosed' || k === 'offOpen' || fireImg(k) || rgbImg(k);
+    const isClosed = (k) => k === 'closed' || k === 'offClosed' || k === 'fireClosed' || rgbImg(k);
+    const target = () => {
+        if (S.rgb) { const r = RGBW_IMG[S.rgb]; return r && !missing[r] ? r : 'party'; }   /* photo de la couleur, sinon image party recolorée */
+        if (!S.light) {
+            if (S.fire) { const f = S.curtains ? 'fireClosed' : 'fireOpen'; if (!missing[f]) return f; }   /* cheminée allumée + lumières éteintes */
+            const k = S.curtains ? 'offClosed' : 'offOpen'; if (!missing[k]) return k;
+        }
+        return S.curtains ? 'closed' : S.mood;
+    };
+    let lightBeforeFire = true, lightBeforeRgb = true;
+    const leaveRgb = () => { if (S.rgb) { S.rgb = null; S.light = lightBeforeRgb; } };   /* quitter le mode LED = lumières comme avant */
 
     /* ---------- WebGL : fondu cinématique entre panoramas ---------- */
     let renderer;
@@ -323,7 +348,7 @@
                 t.minFilter = THREE.LinearFilter; t.generateMipmaps = false; t.anisotropy = aniso; tex[k] = t;
                 try { renderer.initTexture(t); } catch (_) {}   /* envoi au GPU maintenant, pas au moment de la transition */
                 res(t);
-            }, undefined, () => res(null));
+            }, undefined, () => { missing[k] = true; res(null); });
         });
         return pending[k];
     }
@@ -338,15 +363,15 @@
     function snap() {
         if (!U.uSoft.value) return;
         const k = S.img; U.tA.value = tex[k] || U.tA.value; U.tB.value = U.tA.value; U.uMix.value = 0; U.uSoft.value = 0;
-        U.uClA.value = U.uClB.value = k === 'closed' ? 1 : 0; U.uHueA.value = U.uHueB.value = hueOf(k); U.rA.value.set(...rectOf(k)); U.rB.value.copy(U.rA.value);
+        U.uClA.value = U.uClB.value = isClosed(k) ? 1 : 0; U.uHueA.value = U.uHueB.value = hueOf(k); U.rA.value.set(...rectOf(k)); U.rB.value.copy(U.rA.value);
     }
     function setImage(key, instant) {
-        if (!tex[key]) { loadOne(key).then((t) => { if (t && target() === key) setImage(key, instant); }); return; }
+        if (!tex[key]) { loadOne(key).then((t) => { if (!t && offImg(key)) { apply(); return; } if (t && target() === key) setImage(key, instant); }); return; }
         snap();
         if (key === S.img && !trans) { U.uHueA.value = U.uHueB.value = hueOf(key); return; }
         if (trans) { U.tA.value = U.tB.value; U.uHueA.value = U.uHueB.value; U.uClA.value = U.uClB.value; U.rA.value.copy(U.rB.value); U.uMix.value = 0; trans = null; }
         S.img = key; fx();
-        U.uHueB.value = hueOf(key); U.uClB.value = key === 'closed' ? 1 : 0; U.rB.value.set(...rectOf(key));
+        U.uHueB.value = hueOf(key); U.uClB.value = isClosed(key) ? 1 : 0; U.rB.value.set(...rectOf(key));
         if (instant) { U.tA.value = tex[key]; U.uHueA.value = U.uHueB.value; U.uClA.value = U.uClB.value; U.rA.value.copy(U.rB.value); return; }
         U.tB.value = tex[key]; trans = { t0: performance.now(), dur: 1700 };
         flash();
@@ -534,7 +559,7 @@
             '<label>Colour temperature <output id="oWm">' + (S.warm > 12 ? 'Warm' : S.warm < -12 ? 'Cool' : 'Neutral') + '</output></label><input type="range" class="ap-rng ap-rng--t" data-rng="warm" min="-60" max="60" value="' + S.warm + '"></div>';
         if (v === 'rgbw') return '<div class="ap-card"><div class="ap-row"><b>LED strip</b>' + sw(!!S.rgb, S.rgb ? 'rgb:off' : 'rgb:party') + '</div><div class="ap-colors">' +
             COLORS.map((c) => '<button class="ap-col' + (S.rgb === c[0] ? ' on' : '') + '" data-act="rgb:' + c[0] + '"><i style="background:' + c[2] + '"></i><small>' + c[1] + '</small></button>').join('') + '</div>' +
-            '<div class="ap-row ap-row--sp"><b>Breathing effect</b>' + sw(S.pulse, 'pulse') + '</div><small class="ap-note">RGBW = Red, Green, Blue + White LEDs. Pick one colour to light the room in it. With music on, the LEDs pulse to the beat.</small></div>';
+            '<div class="ap-row ap-row--sp"><b>Breathing effect</b>' + sw(S.pulse, 'pulse') + '</div><small class="ap-note">RGBW = Red, Green, Blue + White LEDs. Picking a colour turns the main lights off so only the LED strips light the room. With music on, the room pulses to the beat.</small></div>';
         if (v === 'ac') return '<div class="ap-card ap-center"><div class="ap-temp">' + String(S.temp).replace('.', ',') + '<sup>°C</sup></div><div class="ap-mode">' + (!S.ac ? 'Off' : S.temp < 21 ? '❄ Cooling' : S.temp > 23 ? '☀ Heating' : 'Comfort') + '</div><div class="ap-step"><button data-act="t:-0.5">−</button><button data-act="t:0.5">+</button></div>' +
             '<div class="ap-row"><b>Power · Auto</b>' + sw(S.ac, 'ac') + '</div><small class="ap-note">The room colour follows the temperature: cooler = blue tone, warmer = amber tone.</small></div>';
         if (v === 'music') return '<div class="ap-card ap-center"><div class="ap-art' + (S.music ? ' play' : '') + '"><span></span><span></span><span></span><span></span><span></span></div><b>Lounge Evening</b><small>Multiroom · Salon</small>' +
@@ -547,7 +572,7 @@
         if (v === 'fan') return '<div class="ap-card ap-center"><div class="ap-fan s' + S.fan + '">✢</div><div class="ap-seg">' + [0, 1, 2, 3].map((n) => '<button class="' + (S.fan === n ? 'on' : '') + '" data-act="fan:' + n + '">' + (n ? n : 'Off') + '</button>').join('') + '</div>' +
             '<small class="ap-note">Ceiling fan, speed 1 to 3. In the room the sheer curtains sway more with each speed, and you hear the airflow.</small></div>';
         if (v === 'tv') return '<div class="ap-card"><div class="ap-row"><b>TV screen</b>' + sw(S.tv || S.media, 'tv') + '</div><small class="ap-note">Shows the HN BLOOM logo animation on the living-room TV.</small></div>';
-        if (v === 'fire') return '<div class="ap-card"><div class="ap-row"><b>Fireplace glow</b>' + sw(S.fire, 'fire') + '</div><small class="ap-note">Adds a warm flickering light around the fireplace.</small></div>';
+        if (v === 'fire') return '<div class="ap-card"><div class="ap-row"><b>Fireplace glow</b>' + sw(S.fire, 'fire') + '</div><small class="ap-note">Lights the fireplace and turns the room lights off. Works with the curtains open or closed.</small></div>';
         if (v === 'media') return '<div class="ap-card"><div class="ap-row"><b>Cinema mode</b>' + sw(S.media, 'media') + '</div><small class="ap-note">Closes the curtains, dims the room, adds cinema bars and starts the TV.</small></div>';
         if (v === 'time') return '<div class="ap-card ap-center"><div class="ap-clock" id="oClock">' + clockStr(S.timeT) + '</div><div class="ap-phase" id="oPhase">' + phaseOf(S.timeT) + '</div>' +
             '<input type="range" class="ap-rng ap-rng--day" data-rng="timeT" min="0" max="100" value="' + Math.round(S.timeT * 100) + '"><div class="ap-ends"><span>Day</span><span>Sunset</span><span>Night</span></div>' +
@@ -578,7 +603,7 @@
     function apply(msg, cam) {
         if (S.media) S.curtains = true;
         setImage(target()); fx();
-        root.style.setProperty('--glow', S.rgb && S.img === 'party' ? $('app').dataset.glow : '');
+        root.style.setProperty('--glow', S.rgb && (S.img === 'party' || rgbImg(S.img)) ? $('app').dataset.glow : '');
         climate(); syncAudio();
         if (cam && CAM[cam]) look(CAM[cam][0], CAM[cam][1]);
         render(false); snack(msg);
@@ -592,23 +617,35 @@
         b.classList.add('tap'); window.setTimeout(() => b.classList.remove('tap'), 300);
         const [a, val] = b.dataset.act.split(':');
         if (a === 'go') { stack.push(val); render(true); if (CAM[val]) look(CAM[val][0], CAM[val][1]); return; }
-        if (a === 'light') { S.light = !S.light; apply('Lights ' + (S.light ? 'on' : 'off')); }
+        if (a === 'light') { if (S.rgb) { S.rgb = null; S.light = true; apply('Lights on · LED off'); } else { S.light = !S.light; apply('Lights ' + (S.light ? 'on' : 'off')); } }
         else if (a === 'rgb') {
-            S.rgb = val === 'off' ? null : val;
-            if (S.rgb) { S.curtains = false; S.media = false; const c0 = COLORS.filter((c) => c[0] === val)[0]; $('app').dataset.glow = (val === 'party' || val === 'white') ? '#c43dffcc' : c0[2] + 'cc'; flash(); }
-            apply(S.rgb ? 'LED · ' + (val === 'party' ? 'party colours' : val) : 'LED off', 'rgbw');
+            if (val === 'off') { leaveRgb(); }
+            else {
+                if (!S.rgb) lightBeforeRgb = S.light;
+                S.rgb = val; S.light = false; S.media = false; S.fire = false;      /* LED = lumières principales éteintes */
+                S.curtains = !!RGBW_IMG[val];                                       /* les photos RGBW ont les rideaux fermés */
+                const c0 = COLORS.filter((c) => c[0] === val)[0];
+                $('app').dataset.glow = val === 'party' ? '#c43dffcc' : val === 'white' ? '#ffffffbb' : c0[2] + 'cc'; flash();
+            }
+            apply(S.rgb ? 'LED · ' + (val === 'party' ? 'party colours' : val) + ' · lights off' : 'LED off', 'rgbw');
         }
         else if (a === 'pulse') { S.pulse = !S.pulse; apply('Breathing ' + (S.pulse ? 'on' : 'off')); }
         else if (a === 'ac') { S.ac = !S.ac; apply('AC ' + (S.ac ? 'on' : 'off')); }
         else if (a === 't') { S.temp = Math.max(17, Math.min(27, S.temp + Number(val))); S.ac = true; apply('AC · ' + S.temp + '°C'); }
         else if (a === 'music') { S.music = !S.music; apply(S.music ? 'Playing · Lounge Evening' : 'Music paused', 'music'); }
-        else if (a === 'cur') { const hadRgb = !!S.rgb; S.curtains = val === 'close'; if (S.curtains) S.rgb = null; if (!S.curtains) S.media = false; apply((S.curtains && hadRgb ? 'LED off · ' : '') + 'Curtains ' + (S.curtains ? 'closing' : 'opening'), 'curtain'); }
+        else if (a === 'cur') {
+            /* une photo LED colorée a les rideaux fermés ; l'image party/rose/ambre a les rideaux ouverts */
+            const hadRgb = !!S.rgb, keep = hadRgb && ((RGBW_IMG[S.rgb] && val === 'close') || (!RGBW_IMG[S.rgb] && val === 'open'));
+            if (hadRgb && !keep) leaveRgb();
+            S.curtains = val === 'close'; if (!S.curtains) S.media = false;
+            apply((hadRgb && !keep ? 'LED off · ' : '') + 'Curtains ' + (S.curtains ? 'closing' : 'opening'), 'curtain');
+        }
         else if (a === 'mood') { S.mood = val; S.timeT = { normal: 0, open: 0.1, warm: 0.5, night: 1 }[val]; S.rgb = null; S.curtains = false; S.media = false; S.tv = false; S.light = true; S.warm = val === 'warm' ? 25 : val === 'night' ? 10 : 0; S.bright = val === 'open' ? 105 : 100; apply('Mood · ' + NAMES[val][0], 'mood'); }
         else if (a === 'fan') { S.fan = Number(val); apply(S.fan ? 'Fan speed ' + S.fan : 'Fan off', 'fan'); }
         else if (a === 'tv') { const on = !(S.tv || S.media); S.tv = on; if (!on) S.media = false; apply(on ? 'TV on · HN BLOOM' : 'TV off', 'tv'); }
-        else if (a === 'fire') { S.fire = !S.fire; apply('Fireplace ' + (S.fire ? 'lit' : 'off'), 'fire'); }
-        else if (a === 'media') { S.media = !S.media; if (S.media) S.rgb = null; if (!S.media) S.curtains = false; apply(S.media ? 'Cinema mode on' : 'Cinema mode off', 'media'); }
-        else if (a === 'wx') { S.wx = val; if (S.curtains) { S.curtains = false; S.media = false; } apply('Weather · ' + val, 'weather'); }
+        else if (a === 'fire') { S.fire = !S.fire; if (S.fire) { leaveRgb(); lightBeforeFire = S.light; S.light = false; } else { S.light = lightBeforeFire; } apply(S.fire ? 'Fireplace lit · lights off' : 'Fireplace off · lights on', 'fire'); }
+        else if (a === 'media') { S.media = !S.media; if (S.media) leaveRgb(); if (!S.media) S.curtains = false; apply(S.media ? 'Cinema mode on' : 'Cinema mode off', 'media'); }
+        else if (a === 'wx') { S.wx = val; if (S.curtains) { leaveRgb(); S.curtains = false; S.media = false; } apply('Weather · ' + val, 'weather'); }
         else if (a === 'lock') { S.lock = !S.lock; apply('Front door ' + (S.lock ? 'locked' : 'unlocked')); }
         else if (a === 'alarm') { S.alarm = !S.alarm; apply('Alarm ' + (S.alarm ? 'armed' : 'disarmed')); }
         else if (a === 'visitor') {
@@ -617,7 +654,7 @@
         }
         else if (a === 'scn') {
             if (val === 'morning') Object.assign(S, { mood: 'open', timeT: 0.1, curtains: false, rgb: null, media: false, tv: false, light: true, bright: 105, warm: 0, ac: true, temp: 22, music: false, fire: false });
-            if (val === 'night') Object.assign(S, { curtains: true, rgb: null, media: false, tv: false, light: true, bright: 60, warm: 20, ac: true, temp: 20, music: false, fire: true, lock: true, alarm: true });
+            if (val === 'night') Object.assign(S, { curtains: true, rgb: null, media: false, tv: false, light: false, bright: 60, warm: 20, ac: true, temp: 20, music: false, fire: true, lock: true, alarm: true });
             if (val === 'leave') Object.assign(S, { curtains: true, rgb: null, media: false, tv: false, light: false, ac: false, music: false, fire: false, fan: 0, lock: true, alarm: true });
             apply({ morning: 'Good morning', night: 'Good night', leave: 'Leave home · all off' }[val], 'mood');
         }
@@ -657,10 +694,11 @@
             U.uMix.value = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
             if (p >= 1) { U.tA.value = U.tB.value; U.uHueA.value = U.uHueB.value; U.uClA.value = U.uClB.value; U.rA.value.copy(U.rB.value); U.uMix.value = 0; trans = null; }
         }
-        cur.b = lerp(cur.b, (S.light ? S.bright / 100 : 0.3) * (S.media ? 0.85 : 1), 0.06);
+        const tk = target(), offShown = offImg(tk) && !!tex[tk];
+        cur.b = lerp(cur.b, (S.light ? S.bright / 100 : offShown ? 1 : S.rgb ? 0.45 : 0.3) * (S.media ? 0.85 : 1), 0.06);
         cur.w = lerp(cur.w, S.warm / 100 + (S.ac ? (S.temp - 22) / 12 : 0), 0.06);
         U.uBright.value = cur.b; U.uWarm.value = cur.w; U.uTime.value = (now / 1000) % 100;
-        U.uPulse.value = lerp(U.uPulse.value, S.pulse ? 1 : 0, 0.08); U.uFire.value = lerp(U.uFire.value, S.fire ? 1 : 0, 0.05);
+        U.uPulse.value = lerp(U.uPulse.value, S.pulse ? 1 : 0, 0.08); U.uFire.value = lerp(U.uFire.value, S.fire ? (fireImg(tk) && tex[tk] ? 0.3 : 1) : 0, 0.05);
         U.uFan.value = lerp(U.uFan.value, S.fan / 3, 0.05);
         U.uCloud.value = lerp(U.uCloud.value, S.wx === 'cloudy' ? 1 : 0, 0.04); U.uRain.value = lerp(U.uRain.value, S.wx === 'rain' ? 1 : 0, 0.04); U.uFog.value = lerp(U.uFog.value, S.wx === 'fog' ? 1 : 0, 0.04);
         let beat = 0;
@@ -684,7 +722,7 @@
         window.setTimeout(() => root.classList.add('phone-in'), 400);
         /* les 5 autres panoramas arrivent ensuite, un par un, sans bloquer la page */
         window.setTimeout(() => {
-            ['open', 'warm', 'night', 'closed', 'party'].reduce((p, k) => p.then(() => loadOne(k)), Promise.resolve());
+            ['offClosed', 'offOpen', 'fireClosed', 'fireOpen', 'closed', 'open', 'warm', 'night', 'party', 'rgbWhite', 'rgbViolet', 'rgbCyan', 'rgbBlue', 'rgbGreen', 'rgbRed'].reduce((p, k) => p.then(() => loadOne(k)), Promise.resolve());
         }, 1500);
     });
     render(false); climate(); resize(); requestAnimationFrame(animate);
@@ -693,7 +731,7 @@
 <style>
     .hl360{--gold:#d9bd83;--glow:#f3e2b8aa;margin:28px 0;font-family:Inter,"Helvetica Neue",Arial,sans-serif;color:#f4f1e9;outline:none}
     .hl360 *{box-sizing:border-box}
-    .hl360[data-mood=open]{--glow:#9fd0ffaa}.hl360[data-mood=warm]{--glow:#ffb15faa}.hl360[data-mood=night]{--glow:#ffb86a77}.hl360[data-mood=closed]{--glow:#ffc98a77}.hl360[data-mood=party]{--glow:#c43dffcc}
+    .hl360[data-mood=open]{--glow:#9fd0ffaa}.hl360[data-mood=warm]{--glow:#ffb15faa}.hl360[data-mood=night]{--glow:#ffb86a77}.hl360[data-mood=closed]{--glow:#ffc98a77}.hl360[data-mood=party]{--glow:#c43dffcc}.hl360[data-mood=offClosed],.hl360[data-mood=offOpen]{--glow:#7f93c455}.hl360[data-mood=fireOpen],.hl360[data-mood=fireClosed]{--glow:#ff9a4a66}
     .hl360__stage{position:relative;isolation:isolate;width:100%;height:clamp(700px,86vh,920px);overflow:hidden;background:#171612;border:1px solid rgba(217,189,131,.32);border-radius:20px}
     .hl360__stage:fullscreen{width:100vw;height:100vh;border:0;border-radius:0}
     .hl360__canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab;touch-action:none}.hl360__canvas:active{cursor:grabbing}
